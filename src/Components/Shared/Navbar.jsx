@@ -7,6 +7,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/all-classes">All Classes</NavLink>
         <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
+        <NavLink to="/login">Sign In</NavLink>
     </>
 
     return (
@@ -36,7 +37,7 @@ const Navbar = () => {
                 <img src={logo} alt="" className="w-1/3 lg:w-24" />
             </div>
             <div className="navbar-center hidden lg:flex ">
-                <ul className="menu menu-horizontal px-1 space-x-4 font-semibold text-lg">
+                <ul className="menu menu-horizontal px-1 space-x-10 font-semibold text-lg">
                     {links}
                 </ul>
             </div>

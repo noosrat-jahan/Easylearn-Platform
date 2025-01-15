@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ClassDetails = () => {
     return (
@@ -18,7 +19,7 @@ const ClassDetails = () => {
                     <h3>total enrolled</h3>
                     <p>status: approved</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-info">Enroll</button>
+                        <Link to={`/payment/${1}`} className="btn btn-info">Enroll</Link >
                     </div>
                 </div>
             </div>

@@ -9,6 +9,9 @@ import AllClasses from '../Pages/AllClasses';
 import ClassDetails from '../Pages/ClassDetails';
 import Errorpage from '../Pages/Errorpage';
 import TeachOnPage from '../Pages/TeachOnPage';
+import StudentPayment from '../Pages/StudentPayment';
+import Login from '../Components/Auth/Login';
+import Register from '../Components/Auth/Register';
 
 const Router = createBrowserRouter([
     {
@@ -28,10 +31,22 @@ const Router = createBrowserRouter([
                 element: <ClassDetails></ClassDetails>
             },
             {
+                path: "/payment/:id",
+                element: <StudentPayment></StudentPayment>
+            },
+            {
                 path: "/teachon",
                 element: <TeachOnPage></TeachOnPage>
             },
         ]
+    },
+    {
+        path: "/login",
+        element: <Login></Login>
+    },
+    {
+        path: "/register",
+        element: <Register></Register>
     },
     {
         path: "*",
