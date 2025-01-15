@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 import MainLayout from '../Layout/MainLayout';
 import Homepage from '../Pages/Homepage';
+import AllClasses from '../Pages/AllClasses';
+import ClassDetails from '../Pages/ClassDetails';
 
 const Router = createBrowserRouter([
     {
@@ -14,7 +16,15 @@ const Router = createBrowserRouter([
             {
                 path: "/",
                 element: <Homepage></Homepage>
-            }
+            },
+            {
+                path: "/all-classes",
+                element: <AllClasses></AllClasses>
+            },
+            {
+                path: "/all-classes/:id",
+                element: <ClassDetails></ClassDetails>
+            },
         ]
     },
 ]);
