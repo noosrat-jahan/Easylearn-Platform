@@ -7,6 +7,8 @@ import MainLayout from '../Layout/MainLayout';
 import Homepage from '../Pages/Homepage';
 import AllClasses from '../Pages/AllClasses';
 import ClassDetails from '../Pages/ClassDetails';
+import Errorpage from '../Pages/Errorpage';
+import TeachOnPage from '../Pages/TeachOnPage';
 
 const Router = createBrowserRouter([
     {
@@ -25,8 +27,16 @@ const Router = createBrowserRouter([
                 path: "/all-classes/:id",
                 element: <ClassDetails></ClassDetails>
             },
+            {
+                path: "/teachon",
+                element: <TeachOnPage></TeachOnPage>
+            },
         ]
     },
+    {
+        path: "*",
+        element: <Errorpage></Errorpage>
+    }
 ]);
 
 export default Router;

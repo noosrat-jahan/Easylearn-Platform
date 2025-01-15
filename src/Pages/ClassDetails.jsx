@@ -3,7 +3,7 @@ import React from 'react';
 const ClassDetails = () => {
     return (
         <div>
-            <div className="card lg:card-side bg-base-100 shadow-xl">
+            <div className="card lg:card-side bg-base-100 shadow-xl my-10">
                 <figure>
                     <img
                         src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
