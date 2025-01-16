@@ -11,39 +11,39 @@ const Login = () => {
     const {setUser, loginUser, googleSignIn} = useContext(AuthContext)
     const navigate = useNavigate()
 
-    // const handleLogin = e => {
-    //     e.preventDefault()
+    const handleLogin = e => {
+        e.preventDefault()
 
-    //     const form = e.target 
-    //     const email = form.email.value
-    //     const password = form.password.value
+        const form = e.target 
+        const email = form.email.value
+        const password = form.password.value
         
-    //     loginUser(email, password)
-    //     .then((result) =>{
-    //         const user = result.user
-    //         setUser(user)
-    //         console.log(user);
-    //         navigate('/')
-    //     })
-    //     .catch(err =>{
-    //         console.log('Login Error:', err.message);
-    //     })
+        loginUser(email, password)
+        .then((result) =>{
+            const user = result.user
+            setUser(user)
+            console.log(user);
+            navigate('/')
+        })
+        .catch(err =>{
+            console.log('Login Error:', err.message);
+        })
         
-    // }
+    }
 
-    // const handleGoogleLogin = () => {
-    //     googleSignIn()
-    //     .then((result) =>{
-    //         const user = result.user
-    //         setUser(user)
-    //         console.log(user);
-    //         navigate('/')
-    //     })
-    //     .catch(err =>{
-    //         console.log('Register Error:', err.message);
-    //     })
+    const handleGoogleLogin = () => {
+        googleSignIn()
+        .then((result) =>{
+            const user = result.user
+            setUser(user)
+            console.log(user);
+            navigate('/')
+        })
+        .catch(err =>{
+            console.log('Register Error:', err.message);
+        })
 
-    // }
+    }
 
     return (
         <div className="hero-content  grid lg:grid-cols-2 grid-cols-1 gap-3 w-10/12 mx-auto shadow-lg m-3">
