@@ -14,8 +14,9 @@ const Navbar = () => {
         <NavLink to="/all-classes">All Classes</NavLink>
         <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
         {
-            !user && <NavLink to="/login">Sign In</NavLink>
+            !user && <NavLink to="/login" className="bg-pink-50 font-semibold px-2 py-1 rounded text-blue-700">Sign In</NavLink>
         }
+       
     </>
 
     const handleLogout = () => {
