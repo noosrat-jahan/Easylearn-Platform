@@ -1,17 +1,39 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/Easy learn.png'
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+
+    const { user, logOutUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const links = <>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/all-classes">All Classes</NavLink>
         <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
-        <NavLink to="/login">Sign In</NavLink>
+        {
+            !user && <NavLink to="/login">Sign In</NavLink>
+        }
     </>
 
+    const handleLogout = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Sign Out Successfully",
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+                navigate('/login')
+            })
+    }
+
     return (
-        <div className="navbar bg-[#1976D2] text-white z-10 font-poppins sticky top-0 justify-between px-10">
+        <div className="navbar bg-[#1976D2] text-pink-50 z-10 font-poppins sticky top-0 justify-between px-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,22 +63,26 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+
+            {
+                user && <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img
+                                alt="Tailwind CSS Navbar component"
+                                src={user?.photoURL} />
+                        </div>
                     </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        <li><h1 className="justify-between">User Name <span className="badge">New</span></h1></li>
+                        <li><Link to="/studentdashboard">Dashboard</Link></li>
+                        <li><Link onClick={handleLogout} to="/login" ><button >LogOut</button></Link></li>
+                    </ul>
                 </div>
-                <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li><h1 className="justify-between">User Name <span className="badge">New</span></h1></li>
-                    <li><Link>Dashboard</Link></li>
-                    <li><button>LogOut</button></li>
-                </ul>
-            </div>
+            }
+
         </div >
     );
 };

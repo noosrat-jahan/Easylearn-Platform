@@ -101,7 +101,7 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 2500
                     });
-                    navigate('/dashboard')
+                    navigate('/studentdashboard/myclasses')
                 }
             }
         }
@@ -135,7 +135,10 @@ const CheckoutForm = () => {
                 <button disabled={!stripe || !clientSecret} className='btn bg-teal-600 btn-sm text-lg my-5 w-full text-white font-roboto' type="submit">
                     PAY
                 </button>
-                <p className='text-green-600'>Your Transaction ID NO: {transactionId}</p>
+                {
+                    transactionId && <p className='text-green-600'>Your Transaction ID NO: {transactionId}</p>
+                }
+                
             </form>
         </div>
     );

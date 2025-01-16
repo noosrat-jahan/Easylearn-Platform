@@ -12,6 +12,9 @@ import TeachOnPage from '../Pages/TeachOnPage';
 import StudentPayment from '../Pages/StudentPayment';
 import Login from '../Components/Auth/Login';
 import Register from '../Components/Auth/Register';
+import StudentDashboard from '../Layout/StudentDashboard';
+import StudentProfile from '../Pages/StudentProfile';
+import StudentEnrollclass from '../Pages/StudentEnrollclass';
 
 const Router = createBrowserRouter([
     {
@@ -37,6 +40,20 @@ const Router = createBrowserRouter([
             {
                 path: "/teachon",
                 element: <TeachOnPage></TeachOnPage>
+            },
+        ]
+    },
+    {
+        path: "/studentdashboard",
+        element: <StudentDashboard></StudentDashboard>,
+        children: [
+            {
+                path: "/studentdashboard/myprofile",
+                element: <StudentProfile></StudentProfile>
+            },
+            {
+                path: "/studentdashboard/myclasses",
+                element: <StudentEnrollclass></StudentEnrollclass>
             },
         ]
     },
