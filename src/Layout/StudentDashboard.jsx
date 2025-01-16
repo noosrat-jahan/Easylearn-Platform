@@ -10,7 +10,7 @@ const StudentDashboard = () => {
                 <Link to="/"><img src={logo} alt="" className="w-1/3 lg:w-28 mt-3 mx-auto" /></Link>
                 <ul className="menu text-lg space-y-5 pt-10">
                     <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myprofile"><FaUser></FaUser> My Profile </NavLink></li>
-                    <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myclasses"><FaBook></FaBook> My Enroll Courses</NavLink></li>
+                    <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myclasses"><FaBook></FaBook> My Enroll Class</NavLink></li>
                 </ul>
             </div>
 

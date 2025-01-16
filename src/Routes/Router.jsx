@@ -15,6 +15,7 @@ import Register from '../Components/Auth/Register';
 import StudentDashboard from '../Layout/StudentDashboard';
 import StudentProfile from '../Pages/StudentProfile';
 import StudentEnrollclass from '../Pages/StudentEnrollclass';
+import MyEnrollClassDetails from '../Pages/MyEnrollClassDetails';
 
 const Router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const Router = createBrowserRouter([
             {
                 path: "/studentdashboard/myclasses",
                 element: <StudentEnrollclass></StudentEnrollclass>
+            },
+            {
+                path: "/studentdashboard/myclasses/:id",
+                element: <MyEnrollClassDetails></MyEnrollClassDetails>
             },
         ]
     },

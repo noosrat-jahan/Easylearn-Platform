@@ -13,10 +13,6 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/all-classes">All Classes</NavLink>
         <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
-        {
-            !user && <NavLink to="/login" className="bg-pink-50 font-semibold px-2 py-1 rounded text-blue-700">Sign In</NavLink>
-        }
-       
     </>
 
     const handleLogout = () => {
@@ -34,7 +30,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-[#1976D2] text-pink-50 z-10 font-poppins sticky top-0 justify-between px-10">
+        <div className="navbar  bg-gradient-to-r from-sky-500 to-indigo-500 text-pink-50 z-10 font-poppins sticky top-0 justify-between px-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,7 +49,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 text-black space-y-3 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {links}
                     </ul>
                 </div>
@@ -66,7 +62,7 @@ const Navbar = () => {
             </div>
 
             {
-                user && <div className="dropdown dropdown-end">
+                user ? <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img
@@ -78,10 +74,13 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li><h1 className="justify-between">User Name <span className="badge">New</span></h1></li>
-                        <li><Link to="/studentdashboard">Dashboard</Link></li>
+                        <li><Link to="/studentdashboard/myclasses">Dashboard</Link></li>
                         <li><Link onClick={handleLogout} to="/login" ><button >LogOut</button></Link></li>
                     </ul>
                 </div>
+                    :
+                    <NavLink to="/login" className="bg-pink-50 font-semibold px-3 py-1.5 rounded text-blue-700">Sign In</NavLink>
+
             }
 
         </div >
@@ -89,6 +88,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
 

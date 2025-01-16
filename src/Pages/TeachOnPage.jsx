@@ -8,6 +8,7 @@ const TeachOnPage = () => {
     const onSubmit = (data) => {
         console.log(data)
     }
+    
     return (
         <div>
             <h1 className='text-3xl font-bold my-5 text-pink-600 font-lato'>Become a Part of EASYLEARN</h1>
