@@ -25,7 +25,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const MyEnrollClassDetails = () => {
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const [rating, setRating] = useState(0);
     const ratingChanged = (newRating) => {
@@ -42,8 +42,8 @@ const MyEnrollClassDetails = () => {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
-    const handleSubmitAssignment = () => {
-
+    const handleSubmitAssignment = (e) => {
+        e.preventDefault()
         const task = initialRef.current.value
 
         axios.post('http://localhost:5000/assignment', { task })
@@ -58,23 +58,24 @@ const MyEnrollClassDetails = () => {
 
 
 
-    const handleSubmitFeedback = () =>{
+    const handleSubmitFeedback = (e) => {
+        e.preventDefault()
         const feedbackInfo = {
             title: 'ICT',
             name: user?.displayName,
             photo: user?.photoURL,
             description: finalRef.current.value,
-            ratingStar:  rating
+            ratingStar: rating
         }
 
         axios.post('http://localhost:5000/feedback', feedbackInfo)
-        .then(res => {
-            console.log(res.data);
-            if (res.data.insertedId) {
-                feedbackModal.onClose()
-                Swal.fire("Thanks For Your Feedback.");
-            }
-        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    feedbackModal.onClose()
+                    Swal.fire("Thanks For Your Feedback.");
+                }
+            })
     }
 
 
@@ -83,7 +84,6 @@ const MyEnrollClassDetails = () => {
 
             <Button className="px-5 py-2.5 font-semibold rounded-xl bg-emerald-700 text-gray-50 gap-3"
                 onClick={feedbackModal.onOpen} ><FaPlus></FaPlus> Teaching Evaluation Report (TER) </Button>
-
 
             <h1 className='self-center text-3xl font-poppins underline  font-semibold text-green-700 my-6'>All Assignments</h1>
 
@@ -149,19 +149,17 @@ const MyEnrollClassDetails = () => {
                         <ModalHeader mt={'4'} fontWeight={'bold'} textAlign={'center'}>Submit Assignment</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={3}>
-                            <FormControl>
-                                <FormLabel>Assignment Link</FormLabel>
-                                <Textarea ref={initialRef} placeholder='Link'></Textarea>
+                            <form onSubmit={handleSubmitAssignment}>
+                                <FormControl>
+                                    <FormLabel>Assignment Link</FormLabel>
+                                    <Textarea ref={initialRef} placeholder='Link' required={true}></Textarea>
+                                </FormControl>
+                                <Button type="submit" colorScheme='blue' marginTop={5} width={'full'}>
+                                    Submit
+                                </Button>
+                            </form>
 
-                            </FormControl>
                         </ModalBody>
-
-                        <ModalFooter>
-                            <Button onClick={handleSubmitAssignment} colorScheme='blue' marginTop={2} width={'full'}>
-                                Submit
-                            </Button>
-                            {/* <Button onClick={onClose}>Cancel</Button> */}
-                        </ModalFooter>
                     </ModalContent>
                 </Modal>
 
@@ -178,30 +176,28 @@ const MyEnrollClassDetails = () => {
                         <ModalHeader mt={'4'} fontSize={24} fontWeight={'bold'} textAlign={'center'}>Give Feedback</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={3}>
-                            <FormControl >
-                                <FormLabel>Feedback </FormLabel>
-                                <Textarea ref={finalRef} placeholder='Description'></Textarea>
+                            <form onSubmit={handleSubmitFeedback}>
+                                <FormControl >
+                                    <FormLabel>Feedback </FormLabel>
+                                    <Textarea ref={finalRef} placeholder='Description' required></Textarea>
 
-                                <div className='flex flex-col items-center'>
-                                    <ReactStars
-                                        count={5}
-                                        value={rating}
-                                        onChange={ratingChanged}
-                                        size={24}
-                                        color2={"#ffd700"}
+                                    <div className='flex flex-col items-center'>
+                                        <ReactStars
+                                            count={5}
+                                            value={rating}
+                                            onChange={ratingChanged}
+                                            size={24}
+                                            color2={"#ffd700"}                                    
 
-                                    />
-                                    <h2>Value: {rating}</h2>
-                                </div>
-                            </FormControl>
+                                        />
+                                        <h2>Value: {rating}</h2>
+                                    </div>
+                                </FormControl>
+                                <Button type="submit" colorScheme='orange' width={'full'}>
+                                    Send
+                                </Button>
+                            </form>
                         </ModalBody>
-
-                        <ModalFooter>
-                            <Button onClick={handleSubmitFeedback} colorScheme='orange'  width={'full'}>
-                                Send
-                            </Button>
-                            {/* <Button onClick={onClose}>Cancel</Button> */}
-                        </ModalFooter>
                     </ModalContent>
                 </Modal>
             </ChakraProvider>

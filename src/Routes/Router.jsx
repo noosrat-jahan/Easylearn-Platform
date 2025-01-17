@@ -17,6 +17,11 @@ import StudentProfile from '../Pages/StudentProfile';
 import StudentEnrollclass from '../Pages/StudentEnrollclass';
 import MyEnrollClassDetails from '../Pages/MyEnrollClassDetails';
 import AddClass from '../Pages/AddClass';
+import TeachersAddedClass from '../Pages/TeachersAddedClass';
+import TeacherClassDetails from '../Pages/TeacherClassDetails';
+import TeacherRequests from '../Pages/TeacherRequests';
+import AllUsers from '../Pages/AllUsers';
+import AdminAllClasses from '../Pages/AdminAllClasses';
 
 const Router = createBrowserRouter([
     {
@@ -54,16 +59,36 @@ const Router = createBrowserRouter([
                 element: <StudentProfile></StudentProfile>
             },
             {
-                path: "/studentdashboard/myclasses",
+                path: "/studentdashboard/studentclasses",
                 element: <StudentEnrollclass></StudentEnrollclass>
             },
             {
-                path: "/studentdashboard/myclasses/:id",
+                path: "/studentdashboard/studentclasses/:id",
                 element: <MyEnrollClassDetails></MyEnrollClassDetails>
             },
             {
                 path: "/studentdashboard/addclasses",
                 element: <AddClass></AddClass>
+            },
+            {
+                path: "/studentdashboard/teacherclasses",
+                element: <TeachersAddedClass></TeachersAddedClass>
+            },
+            {
+                path: "/studentdashboard/teacherclasses/:id",
+                element: <TeacherClassDetails></TeacherClassDetails>
+            },
+            {
+                path: "/studentdashboard/teacherRequest",
+                element: <TeacherRequests></TeacherRequests>
+            },
+            {
+                path: "/studentdashboard/allusers",
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: "/studentdashboard/allClasses",
+                element: <AdminAllClasses></AdminAllClasses>
             },
         ]
     },
