@@ -16,6 +16,7 @@ import StudentDashboard from '../Layout/StudentDashboard';
 import StudentProfile from '../Pages/StudentProfile';
 import StudentEnrollclass from '../Pages/StudentEnrollclass';
 import MyEnrollClassDetails from '../Pages/MyEnrollClassDetails';
+import AddClass from '../Pages/AddClass';
 
 const Router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ const Router = createBrowserRouter([
             {
                 path: "/studentdashboard/myclasses/:id",
                 element: <MyEnrollClassDetails></MyEnrollClassDetails>
+            },
+            {
+                path: "/studentdashboard/addclasses",
+                element: <AddClass></AddClass>
             },
         ]
     },

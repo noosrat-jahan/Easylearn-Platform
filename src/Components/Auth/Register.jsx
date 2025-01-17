@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import pic from '../../assets/login.png'
 import { AuthContext } from '../../Provider/AuthProvider';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
@@ -28,6 +29,13 @@ const Register = () => {
             const user = result.user
             setUser(user)
             console.log(user);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Signed Up Successfully",
+                showConfirmButton: false,
+                timer: 3500
+            });
             navigate('/')
         })
         .catch(err =>{
@@ -41,6 +49,13 @@ const Register = () => {
             const user = result.user
             setUser(user)
             console.log(user);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Signed Up Successfully",
+                showConfirmButton: false,
+                timer: 3500
+            });
             navigate('/')
         })
         .catch(err =>{
