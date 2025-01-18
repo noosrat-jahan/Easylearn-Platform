@@ -41,7 +41,7 @@ const Register = () => {
                 axios.post('http://localhost:5000/allusers', userInfo)
                     .then(res => {
                         console.log(res.data);
-                        if(res.data.insertedId){
+                        if (res.data.insertedId) {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
@@ -52,7 +52,7 @@ const Register = () => {
                             navigate('/')
                         }
                     })
-                
+
             })
             .catch(err => {
                 console.log('Register Error:', err.message);
@@ -65,14 +65,28 @@ const Register = () => {
                 const user = result.user
                 setUser(user)
                 console.log(user);
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Signed Up Successfully",
-                    showConfirmButton: false,
-                    timer: 3500
-                });
-                navigate('/')
+
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    role: 'student'
+                }
+                axios.post('http://localhost:5000/allusers', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Signed Up Successfully",
+                                showConfirmButton: false,
+                                timer: 3500
+                            });
+                            navigate('/')
+                        }
+                    })
+
             })
             .catch(err => {
                 console.log('Register Error:', err.message);

@@ -13,23 +13,33 @@ import '../../styles.css';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import banner1 from '../../assets/bannerimg1.jpeg'
+import banner2 from '../../assets/bannerimg2.jpeg'
+import banner3 from '../../assets/bannerimg3.jpeg'
+
 const Banner = () => {
+
+    
     return (
-        <div >
+        <div>
 
             <Swiper
                 cssMode={true}
-                navigation={true}
+                // navigation={true}
                 pagination={true}
                 mousewheel={true}
                 keyboard={true}
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                 className="mySwiper"
             >
-                <SwiperSlide><img src={banner1} alt="" /></SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
+                
+                <SwiperSlide><img src={banner2} alt="" className='mix-blend-overlay' /></SwiperSlide>
+                
+                <SwiperSlide><img src={banner1} alt=""  className='mix-blend-overlay'/></SwiperSlide>
+                <SwiperSlide><img src={banner3} alt=""  className='mix-blend-overlay'/></SwiperSlide>
+                
             </Swiper>
+
+
         </div>
     );
 };
