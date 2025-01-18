@@ -73,7 +73,7 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><h1 className="justify-between">User Name <span className="badge">New</span></h1></li>
+                        <li><h1 className="justify-between text-pink-600">{user?.displayName} <span className="badge">New</span></h1></li>
                         <li><Link to="/studentdashboard/studentclasses">Dashboard</Link></li>
                         <li><Link onClick={handleLogout} to="/login" ><button >LogOut</button></Link></li>
                     </ul>

@@ -12,7 +12,7 @@ import TeachOnPage from '../Pages/TeachOnPage';
 import StudentPayment from '../Pages/StudentPayment';
 import Login from '../Components/Auth/Login';
 import Register from '../Components/Auth/Register';
-import StudentDashboard from '../Layout/StudentDashboard';
+import Dashboard from '../Layout/Dashboard';
 import StudentProfile from '../Pages/StudentProfile';
 import StudentEnrollclass from '../Pages/StudentEnrollclass';
 import MyEnrollClassDetails from '../Pages/MyEnrollClassDetails';
@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
     },
     {
         path: "/studentdashboard",
-        element: <StudentDashboard></StudentDashboard>,
+        element: <Dashboard></Dashboard>,
         children: [
             {
                 path: "/studentdashboard/myprofile",

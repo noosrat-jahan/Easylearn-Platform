@@ -4,7 +4,8 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from '../assets/Easy learn.png'
 
-const StudentDashboard = () => {
+
+const Dashboard = () => {
     return (
         <div className='flex'>
             <div className='bg-[#67c9d6] min-h-screen w-3/12 '>
@@ -39,4 +40,4 @@ const StudentDashboard = () => {
     );
 };
 
-export default StudentDashboard;
+export default Dashboard;

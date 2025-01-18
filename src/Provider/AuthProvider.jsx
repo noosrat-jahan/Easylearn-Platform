@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../Firebase/firebase.config';
 import { Unsubscribe } from '@mui/icons-material';
@@ -26,6 +26,11 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider)
     }
 
+    const updateUser = (updatedprofileInfo) =>{
+        setLoading(true)
+        return updateProfile(auth.currentUser, updatedprofileInfo)
+    }
+
     const logOutUser = () =>{
         setLoading(true)
         return signOut(auth)
@@ -38,6 +43,7 @@ const AuthProvider = ({children}) => {
         loading,
         createUser,
         loginUser,
+        updateUser,
         googleSignIn,
         logOutUser
     }

@@ -6,6 +6,7 @@ import pic from '../../assets/login.png'
 import { AuthContext } from '../../Provider/AuthProvider';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Register = () => {
 
@@ -25,42 +26,57 @@ const Register = () => {
         console.log(data)
 
         createUser(data.email, data.password)
-        .then((result) =>{
-            const user = result.user
-            setUser(user)
-            console.log(user);
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Signed Up Successfully",
-                showConfirmButton: false,
-                timer: 3500
-            });
-            navigate('/')
-        })
-        .catch(err =>{
-            console.log('Register Error:', err.message);
-        })
+            .then((result) => {
+                const user = result.user
+                setUser(user)
+                console.log(user);
+
+                const userInfo = {
+                    name: data.name,
+                    email: data.email,
+                    photo: data.photo,
+                    role: 'student'
+                }
+
+                axios.post('http://localhost:5000/allusers', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if(res.data.insertedId){
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Signed Up Successfully",
+                                showConfirmButton: false,
+                                timer: 3500
+                            });
+                            navigate('/')
+                        }
+                    })
+                
+            })
+            .catch(err => {
+                console.log('Register Error:', err.message);
+            })
     }
 
     const handleGoogleLogin = () => {
         googleSignIn()
-        .then((result) =>{
-            const user = result.user
-            setUser(user)
-            console.log(user);
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Signed Up Successfully",
-                showConfirmButton: false,
-                timer: 3500
-            });
-            navigate('/')
-        })
-        .catch(err =>{
-            console.log('Register Error:', err.message);
-        })
+            .then((result) => {
+                const user = result.user
+                setUser(user)
+                console.log(user);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Signed Up Successfully",
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+                navigate('/')
+            })
+            .catch(err => {
+                console.log('Register Error:', err.message);
+            })
 
     }
 
