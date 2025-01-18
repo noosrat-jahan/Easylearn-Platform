@@ -4,10 +4,12 @@ import {
     useQuery,
 } from '@tanstack/react-query'
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import useAdmin from '../Hooks/useAdmin';
 
 const AllUsers = () => {
 
-    const { data: users = [] } = useQuery({
+    const { refetch, data: users = [] } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/allusers')
@@ -15,6 +17,38 @@ const AllUsers = () => {
         }
     })
     console.log(users);
+
+    const handleMakeAdmin = users => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.patch(`http://localhost:5000/allusers/admin/${users._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `${users.name} is an Admin now`,
+                                showConfirmButton: false,
+                                timer: 3500
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
+
+    
 
     return (
         <div>
@@ -54,18 +88,18 @@ const AllUsers = () => {
                                         <p>{singleuser.name}</p>
                                     </td>
                                     <td className="p-3">
-                                        <img src={singleuser.photo} alt="" className='w-16 h-16 mx-auto' />                                        
+                                        <img src={singleuser.photo} alt="" className='w-16 h-16 mx-auto' />
                                     </td>
                                     <td className="p-3">
                                         <p>{singleuser.email}</p>
-                                        
+
                                     </td>
                                     <td className="p-3">
                                         <p>{singleuser.role}</p>
-                                        
+
                                     </td>
                                     <td className="p-3 text-center">
-                                        <Button className="px-5 py-2.5 font-semibold rounded-md bg-teal-600 text-gray-50"
+                                        <Button disabled={singleuser.role === "admin"} onClick={() => { handleMakeAdmin(singleuser) }} className="px-5 py-2.5 font-semibold btn rounded-md bg-teal-600 text-gray-50"
                                         >Make Admin</Button>
                                     </td>
                                 </tr>)
