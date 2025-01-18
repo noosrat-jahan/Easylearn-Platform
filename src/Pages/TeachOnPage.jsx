@@ -103,11 +103,11 @@ const TeachOnPage = () => {
                                 {...register("category", { required: true })}
                                 className="select select-bordered w-full ">
                                 <option disabled selected>Category</option>
+                                <option value="Academic Instructor"> Academic Instructor</option>
                                 <option value="Web Development">Web Development</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Creative Arts">Creative Arts</option>
                                 <option value="Data Science">Data Science</option>
-                                <option value="Python">Python</option>
-                                <option value="SEO"> Academic Instructor</option>
+                                <option value="Python">Python</option>                          
 
                             </select>
                         </label>
