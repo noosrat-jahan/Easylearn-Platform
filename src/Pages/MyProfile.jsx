@@ -5,13 +5,15 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAdmin from '../Hooks/useAdmin';
+import useTeacher from '../Hooks/useTeacher';
 
-const StudentProfile = () => {
+const MyProfile = () => {
 
     const { user, updateUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const [isAdmin] = useAdmin()
+    const [isTeacher] = useTeacher()
 
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
@@ -45,7 +47,7 @@ const StudentProfile = () => {
         <div>
             <div className='w-7/12 mx-auto border border-neutral-500 rounded-lg my-6 p-8 flex flex-col items-center gap-3'>
                 <img src={user?.photoURL ? user.photoURL : userpic} alt="" className='rounded-full w-1/4 ' />
-                <h1 className='bg-slate-200 p-3 rounded-md text-green-800 font-semibold'>Role: {isAdmin ? 'Admin' : 'Student'}</h1>
+                <h1 className='bg-slate-200 p-3 rounded-md text-green-800 font-semibold'>Role: {isAdmin ? 'Admin' : isTeacher ? 'Teacher' : 'Student'}</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-4'>
 
@@ -111,4 +113,4 @@ const StudentProfile = () => {
     );
 };
 
-export default StudentProfile;
+export default MyProfile;

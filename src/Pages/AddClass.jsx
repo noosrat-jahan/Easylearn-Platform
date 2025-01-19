@@ -2,14 +2,34 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaBook, FaBookOpen, FaHandPaper } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddClass = () => {
 
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
+        data.status = 'pending'
         console.log(data)
+
+        axios.post('http://localhost:5000/newlyCreatedClass', data)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "New Class Created successfully",
+                        showConfirmButton: false,
+                        timer: 3500
+                    });
+                    navigate('/studentdashboard/teacherclasses')
+                }
+            })
     }
 
     return (
