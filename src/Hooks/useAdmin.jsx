@@ -6,6 +6,7 @@ import axios from 'axios';
 const useAdmin = () => {
 
     const {user} = useContext(AuthContext)
+    console.log(user);
 
     const {data: isAdmin, isPending: isAdminLoading} = useQuery({
         queryKey: [user?.email, 'isAdmin'],

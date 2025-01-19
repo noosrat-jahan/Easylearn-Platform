@@ -1,11 +1,16 @@
 import { Button } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const TeacherRequests = () => {
+    const { user } = useContext(AuthContext)
 
-    const { data: teachReq = [] } = useQuery({
+   
+
+    const {refetch, data: teachReq = [] } = useQuery({
         queryKey: ['teachReq'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/teacherRequests')
@@ -13,6 +18,54 @@ const TeacherRequests = () => {
         }
     })
     console.log(teachReq);
+
+    //  const { refetch, data: users = [] } = useQuery({
+    //     queryKey: [user?.email, 'user'],
+    //     queryFn: async () => {
+    //         const res = await axios.get(`http://localhost:5000/allusers/${user?.email}`)
+    //         return res.data
+    //     }
+    // })
+    // console.log(users);
+
+    const handleMakeTeacher = request => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Teacher!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.patch(`http://localhost:5000/allusers/${request.userEmail}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            
+                            axios.patch(`http://localhost:5000/teacherRequests/${request.email}`)
+                                .then(res => {
+                                    console.log(res.data);
+                                    if (res.data.modifiedCount > 0) {
+                                        refetch()
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: `${request.name} is a Teacher now`,
+                                            showConfirmButton: false,
+                                            timer: 3500
+                                        });
+                                    }
+                                })
+                        }
+                    })
+
+
+
+            }
+        });
+    }
 
     return (
         <div>
@@ -65,8 +118,8 @@ const TeacherRequests = () => {
                                     <td className="p-3">
                                         <p>{request.status}</p>
                                     </td>
-                                    <                                            td className="p-3 text-center flex gap-2 justify-center">
-                                        <Button className="px-5 py-2.5 font-semibold rounded-md bg-green-600 text-gray-50"
+                                    <td className="p-3 text-center flex gap-2 justify-center">
+                                        <Button onClick={() => { handleMakeTeacher(request) }} className="px-5 py-2.5 font-semibold rounded-md bg-green-600 text-gray-50"
                                         >Approve</Button>
                                         <Button className="px-5 py-2.5 font-semibold rounded-md bg-orange-600 text-gray-50"
                                         >Reject</Button>

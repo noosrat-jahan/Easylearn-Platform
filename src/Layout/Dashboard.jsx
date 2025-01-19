@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaBook, FaUser } from 'react-icons/fa';
 import { SiGoogleclassroom } from "react-icons/si";
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from '../assets/Easy learn.png'
 import useAdmin from '../Hooks/useAdmin';
+import { AuthContext } from '../Provider/AuthProvider';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import useTeacher from '../Hooks/useTeacher';
 
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin()
+    const [isTeacher] = useTeacher()
     console.log(isAdmin);
+
+
 
     return (
         <div className='flex'>
@@ -25,18 +32,26 @@ const Dashboard = () => {
                         <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/allClasses"><FaBook></FaBook> All classes
                         </NavLink></li>
                         <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myProfile"><FaUser></FaUser> Profile</NavLink></li>
-                    </ul> : <ul className="menu text-lg space-y-5 pt-10">
-                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myprofile"><FaUser></FaUser> My Profile </NavLink></li>
-                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/studentclasses"><FaBook></FaBook> My Enroll Class</NavLink></li>
-
-
-                        <div className="divider"></div>
-                        {/* for teacher  */}
-                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/addclasses"><SiGoogleclassroom /> Add Class</NavLink></li>
-                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/teacherclasses"><FaBook></FaBook> My Class</NavLink></li>
-                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myProfile"><FaUser></FaUser> My Profile</NavLink></li>
-                        <div className="divider"></div>
                     </ul>
+                        :
+                        <>
+                            {
+                                isTeacher ? <ul className="menu text-lg space-y-5 pt-10">
+                                    {/* for teacher  */}
+                                    <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/addclasses"><SiGoogleclassroom /> Add Class</NavLink></li>
+                                    <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/teacherclasses"><FaBook></FaBook> My Class</NavLink></li>
+                                    <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myProfile"><FaUser></FaUser> My Profile</NavLink></li>
+                                    <div className="divider"></div>
+                                </ul>
+                                :
+                                    <ul className="menu text-lg space-y-5 pt-10">
+                                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myprofile"><FaUser></FaUser> My Profile </NavLink></li>
+                                        <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/studentclasses"><FaBook></FaBook> My Enroll Class</NavLink></li>
+
+                                        <div className="divider"></div>
+                                    </ul>
+                            }
+                        </>
                 }
 
             </div>

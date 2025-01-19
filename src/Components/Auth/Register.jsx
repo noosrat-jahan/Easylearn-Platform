@@ -67,6 +67,7 @@ const Register = () => {
                 console.log(user);
 
                 const userInfo = {
+                    // registeredId: user.uid,
                     name: user.displayName,
                     email: user.email,
                     photo: user.photoURL,

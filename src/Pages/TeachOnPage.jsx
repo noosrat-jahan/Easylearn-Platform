@@ -1,16 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaBook, FaUtensils } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const TeachOnPage = () => {
     const navigate = useNavigate()
 
+    const {user} = useContext(AuthContext)
+    console.log(user.email);
+
+
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {        
         data.status = 'pending'
+        data.userEmail = user.email
         console.log(data)
 
         axios.post('http://localhost:5000/teacherRequests', data)
