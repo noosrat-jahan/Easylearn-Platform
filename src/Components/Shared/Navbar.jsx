@@ -3,11 +3,16 @@ import logo from '../../assets/Easy learn.png'
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAdmin from "../../Hooks/useAdmin";
+import useTeacher from "../../Hooks/useTeacher";
 
 const Navbar = () => {
-
+    
     const { user, logOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
+
+    const [isAdmin] = useAdmin()
+    const [isTeacher] = useTeacher()
 
     const links = <>
         <NavLink to="/">Home</NavLink>
@@ -70,15 +75,27 @@ const Navbar = () => {
                                 src={user?.photoURL} />
                         </div>
                     </div>
+
+                    {/* dashboard route setup  */}
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><h1 className="justify-between text-pink-600">{user?.displayName} <span className="badge">New</span></h1></li>
-                        <li><Link to="/studentdashboard/studentclasses">Dashboard</Link></li>
+                        className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-56 p-2 shadow">
+                        <li><h1 className="justify-between text-pink-600">{user?.displayName} <span className="badge">{isAdmin ? 'Admin' : isTeacher ? 'Teacher': 'Student'}</span></h1></li>
+                        {/* <li><Link to="/studentdashboard/studentclasses">Dashboard</Link></li> */}
+                        {
+                            isAdmin ? <li><Link to="/studentdashboard/teacherRequest">Dashboard</Link></li>
+                            : <>
+                            {
+                                isTeacher ? <li><Link to="/studentdashboard/teacherclasses">Dashboard</Link></li>
+                                : <li><Link to="/studentdashboard/studentclasses">Dashboard</Link></li>
+                            }
+                            </>
+                        }
                         <li><Link onClick={handleLogout} to="/login" ><button >LogOut</button></Link></li>
                     </ul>
                 </div>
-                    :
+                    
+                :
                     <NavLink to="/login" className="bg-pink-50 font-semibold px-3 py-1.5 rounded text-blue-700">Sign In</NavLink>
 
             }

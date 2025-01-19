@@ -64,6 +64,8 @@ const TeachOnPage = () => {
                                 {...register("email", { required: true })}
                                 type="email"
                                 placeholder="your email"
+                                value={user?.email}
+                                readOnly
                                 className="input input-bordered w-full " />
                         </label>
                     </div>
@@ -95,7 +97,7 @@ const TeachOnPage = () => {
                             <input
                                 {...register("picture", { required: true })}
                                 type="text"
-                                placeholder="image"
+                                placeholder="your photo"
                                 className="input input-bordered w-full " />
                         </label>
                     </div>
