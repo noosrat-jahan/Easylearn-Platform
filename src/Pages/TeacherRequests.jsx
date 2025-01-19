@@ -138,7 +138,8 @@ const TeacherRequests = () => {
                                     </td>
                                     <td className="p-3 text-center flex gap-2 justify-center items-center">
                                         <Button 
-                                        disabled={request.status === 'accepted' || request.status === 'rejected'} onClick={() => { handleMakeTeacher(request) }} className="px-5 py-2.5 btn font-semibold rounded-md bg-green-600 text-gray-50"
+                                        disabled={request.status === 'accepted' || request.status === 'rejected'} 
+                                        onClick={() => { handleMakeTeacher(request) }} className="px-5 py-2.5 btn font-semibold rounded-md bg-green-600 text-gray-50"
                                         >Approve</Button>
                                         <Button
                                             disabled={request.status === 'accepted' || request.status === 'rejected'}

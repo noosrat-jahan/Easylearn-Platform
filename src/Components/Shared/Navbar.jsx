@@ -79,7 +79,7 @@ const Navbar = () => {
                     {/* dashboard route setup  */}
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-56 p-2 shadow">
+                        className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 space-y-3 w-56 p-2 shadow">
                         <li><h1 className="justify-between text-pink-600">{user?.displayName} <span className="badge">{isAdmin ? 'Admin' : isTeacher ? 'Teacher': 'Student'}</span></h1></li>
                         {/* <li><Link to="/studentdashboard/studentclasses">Dashboard</Link></li> */}
                         {

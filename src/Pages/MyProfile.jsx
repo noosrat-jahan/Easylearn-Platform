@@ -46,7 +46,7 @@ const MyProfile = () => {
     return (
         <div>
             <div className='w-7/12 mx-auto border border-neutral-500 rounded-lg my-6 p-8 flex flex-col items-center gap-3'>
-                <img src={user?.photoURL ? user.photoURL : userpic} alt="" className='rounded-full w-1/4 ' />
+                <img src={user?.photoURL ? user.photoURL : userpic} alt="" className='rounded-full w-24 h-20 ' />
                 <h1 className='bg-slate-200 p-3 rounded-md text-green-800 font-semibold'>Role: {isAdmin ? 'Admin' : isTeacher ? 'Teacher' : 'Student'}</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-4'>

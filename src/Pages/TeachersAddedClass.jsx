@@ -2,16 +2,21 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, ChakraProvider, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const TeachersAddedClass = () => {
+    const {user} = useContext(AuthContext)
+    console.log(user.email);
 
     const { refetch, data: newCreatedClass = [] } = useQuery({
-        queryKey: ['teachReq'],
+        queryKey: [user?.email,'newClass'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/newlyCreatedClass')
+            const res = await axios.get(`http://localhost:5000/newlyCreatedClass?email=${user.email}`)
+            console.log(res.data);
             return res.data
+
         }
     })
     console.log(newCreatedClass);
@@ -20,7 +25,7 @@ const TeachersAddedClass = () => {
         <div className='mx-auto my-5 w-11/12'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                 {
-                    newCreatedClass.map(newClass=> <ChakraProvider key={newClass._id}>
+                    newCreatedClass?.map(newClass=> <ChakraProvider key={newClass._id}>
                         <Card maxW='sm' pb={4} px={2} className='relative'>
                             <CardBody pb={0} p={2}>
                                 <Image
@@ -44,7 +49,7 @@ const TeachersAddedClass = () => {
                                     </Text>
                                 </Stack>
                             </CardBody>
-                            {/* <Divider /> */}
+                           
                             <CardFooter className='mx-auto w-full '>
                                 <ButtonGroup spacing='2' w={'full'}>
                                     <Button variant='solid' colorScheme='blue' className='w-1/2'>
@@ -64,7 +69,6 @@ const TeachersAddedClass = () => {
                 }
             </div>
             
-
         </div>
     );
 };
