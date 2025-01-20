@@ -15,7 +15,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 const PopularClasses = () => {
     return (
-        <div>
+        <div className='my-10'>
             <h1>popular classes</h1>
             <Swiper
                 slidesPerView={3}

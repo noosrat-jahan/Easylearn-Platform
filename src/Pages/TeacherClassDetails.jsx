@@ -7,13 +7,13 @@ import { SiGoogletasks } from 'react-icons/si';
 import { MdAssignment } from "react-icons/md";
 import Swal from 'sweetalert2';
 import axios from 'axios';
-
-
-
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 const TeacherClassDetails = () => {
-
-
+    const {id} = useParams()
+    console.log(id);
+   
     const createassignment = useDisclosure()
 
     const initialRef = React.useRef(null)
@@ -24,12 +24,12 @@ const TeacherClassDetails = () => {
     const deadlineRef = React.useRef(null)
     const descriptionRef = React.useRef(null)
 
-
+    
     const handleCreateAssignment = (e) => {
         e.preventDefault()
 
         const NewAssignmentInfo = {
-
+            classId: id,
             title: titleRef.current.value,
             marks: markRef.current.value,
             description: descriptionRef.current.value,
@@ -45,6 +45,16 @@ const TeacherClassDetails = () => {
                 }
             })
     }
+
+   
+    const { refetch, data: newCreatedAssignment = [] } = useQuery({
+        queryKey: ['newAssignment', id],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/createdAssignments/${id}`)
+            return res.data
+        }
+    })
+
     return (
         <div>
             <section className="p-6  text-gray-100 bg-gray-600">
@@ -108,26 +118,27 @@ const TeacherClassDetails = () => {
                                 </tr>
                             </thead>
                             <tbody >
-                                <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
-                                    <td className="p-3">
-                                        <p>97412378923</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>Microsoft Corporation</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>14 Jan 2022</p>
-                                        <p className="dark:text-gray-600">Friday</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>01 Feb 2022</p>
-                                        <p className="dark:text-gray-600">Tuesday</p>
-                                    </td>
-                                    <td className="p-3 text-center">
-                                        <Button className="px-5 py-2.5 font-semibold rounded-md bg-purple-600 text-gray-50"
-                                        >Check</Button>
-                                    </td>
-                                </tr>
+                                {
+                                    newCreatedAssignment.map(newassignment => <tr key={newassignment._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                        <td className="p-3">
+                                            <p>{newassignment.title}</p>
+                                        </td>
+                                        <td className="p-3">
+                                            <p>{newassignment.description}</p>
+                                        </td>
+                                        <td className="p-3">
+                                            <p>{newassignment.marks}</p>                                            
+                                        </td>
+                                        <td className="p-3">
+                                            <p>{newassignment.deadline}</p>                                            
+                                        </td>                                        
+                                        <td className="p-3 text-center">
+                                            <Button className="px-5 py-2.5 font-semibold rounded-md bg-purple-600 text-gray-50"
+                                            >Check</Button>
+                                        </td>
+                                    </tr>)
+                                }
+                                
                             </tbody>
                         </table>
                     </div>
@@ -168,15 +179,11 @@ const TeacherClassDetails = () => {
                                         Add Assignment
                                     </Button>
                                 </form>
-
                             </ModalBody>
-
-
                         </ModalContent>
                     </Modal>
                 </ChakraProvider>
             </div>
-
         </div>
     );
 };

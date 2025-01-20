@@ -12,7 +12,7 @@ import { Pagination } from 'swiper/modules';
 
 const Feedback = () => {
     return (
-        <div>
+        <div className='my-10'>
             <h1>feedback</h1>
             <Swiper
                 pagination={{

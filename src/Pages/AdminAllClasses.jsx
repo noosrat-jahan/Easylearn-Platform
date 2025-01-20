@@ -28,7 +28,7 @@ const AdminAllClasses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/${newclass.email}`)
+                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/${newclass._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {
@@ -41,6 +41,9 @@ const AdminAllClasses = () => {
                                 timer: 3500
                             });
                         }
+                    })
+                    .catch(err =>{
+                        console.log('Approve Error:', err.message);
                     })
             }
         })
@@ -57,7 +60,7 @@ const AdminAllClasses = () => {
             confirmButtonText: "Yes, Reject Class Request!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/rej/${newclass.email}`)
+                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/rej/${newclass._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {

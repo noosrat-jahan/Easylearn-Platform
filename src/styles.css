@@ -18,15 +18,14 @@
   
   .swiper {
     width: 100%;
-    height: 80vh;   
+    height: 70vh;   
     background-blend-mode: overlay;
   }
   
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background-image: linear-gradient(to right , #fffefe, #d3caca47);
-    
+    /* background-image: linear-gradient(to right , #fffefe, #d3caca47),;     */
   
     /* Center slide text vertically */
     display: flex;
@@ -41,3 +40,21 @@
     object-fit: cover;
   }
   
+  .bg-one{
+    background-image: linear-gradient(to right , #fffefe, #d3caca47), url('./assets/bannerimg2.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .bg-two{
+    background-image: linear-gradient(to right , #fffefe, #d3caca47), url('./assets/bannerimg1.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .bg-three{
+    background-image: linear-gradient(to right , #fffefe, #d3caca47), url('./assets/bannerimg3.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
