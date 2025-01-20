@@ -18,8 +18,7 @@ const Feedback = () => {
     const { refetch, data: allFeedback = [] } = useQuery({
         queryKey: ['feedback'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/feedback')
-            refetch()
+            const res = await axios.get('http://localhost:5000/feedback')            
             return res.data
         }
     })

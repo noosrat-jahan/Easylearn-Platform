@@ -24,6 +24,7 @@ import ReactStars from 'react-stars';
 import { AuthContext } from '../Provider/AuthProvider';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import NewAssignment from './NewAssignment';
 
 const MyEnrollClassDetails = () => {
 
@@ -72,6 +73,7 @@ const MyEnrollClassDetails = () => {
 
     // const [submitDisabled, setSubmitDisabled] = useState(false)
 
+    const [submitAssignment, setSubmitAssignment] = useState()
     const handleSubmitAssignment = (e) => {
         e.preventDefault()
         const task = initialRef.current.value
@@ -138,35 +140,16 @@ const MyEnrollClassDetails = () => {
                             </tr>
                         </thead>
                         <tbody >
+
                             {
-                                newCreatedAssignment.map(newassignment => <tr key={newassignment._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
-                                    <td className="p-3">
-                                        <p>{newassignment.title}</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{newassignment.description}</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{newassignment.marks}</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{newassignment.deadline}</p>
-                                    </td>
-                                    <td className="p-3 text-center">
-                                        <Button
-                                        // disabled={submitDisabled}
-                                         className="px-5 py-2.5 font-semibold btn rounded-md bg-pink-600 text-gray-50"
-                                            onClick={submitModal.onOpen} >Submit</Button>
-                                    </td>
-                                </tr>)
+                                newCreatedAssignment.map(newassignment => <NewAssignment key={newassignment._id} newassignment={newassignment}></NewAssignment>)
                             }
+                           
                             
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
 
             <ChakraProvider>
                 <Modal

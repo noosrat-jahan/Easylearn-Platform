@@ -134,8 +134,6 @@ const TeachersAddedClass = () => {
                                         Update
                                     </Button>
 
-
-
                                     <Button onClick={() => { handleDelete(newClass._id) }} variant='solid' colorScheme='red' className='w-1/2'>
                                         Delete
                                     </Button>
@@ -203,9 +201,6 @@ const TeachersAddedClass = () => {
                     </ModalContent>
                 </Modal>
             </ChakraProvider>
-
-
-
         </div>
     );
 };

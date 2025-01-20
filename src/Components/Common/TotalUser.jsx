@@ -1,9 +1,35 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { PiStudentFill } from 'react-icons/pi';
 import { SiGoogleclassroom } from 'react-icons/si';
 
 const TotalUser = () => {
+
+    const { refetch, data: users = [] } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {
+            const res = await axios.get('http://localhost:5000/allusers')
+            return res.data
+        }
+    })
+
+    const {  data: newCreatedClass = [] } = useQuery({
+        queryKey: ['teachReq'],
+        queryFn: async () => {
+            const res = await axios.get('http://localhost:5000/allDisplayedClass')
+            return res.data
+        }
+    })
+
+    const {  data: totalEnrolled = [] } = useQuery({
+        queryKey: ['teachReq'],
+        queryFn: async () => {
+            const res = await axios.get('http://localhost:5000/totalEnrolled')
+            return res.data
+        }
+    })
     return (
         <div>
 
@@ -15,7 +41,7 @@ const TotalUser = () => {
                             <FaUsers />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">0</p>
+                            <p className="text-3xl font-semibold leading-none">{users.length}</p>
                             <p className="capitalize text-blue-700 text-xl font-bold">Total Usres</p>
                         </div>
                     </div>
@@ -24,7 +50,7 @@ const TotalUser = () => {
                             <SiGoogleclassroom />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">0</p>
+                            <p className="text-3xl font-semibold leading-none">{newCreatedClass.length}</p>
                             <p className="capitalize  text-amber-700 text-xl font-bold">Total  Classes</p>
                         </div>
                     </div>
@@ -34,7 +60,7 @@ const TotalUser = () => {
                             <PiStudentFill />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">0</p>
+                            <p className="text-3xl font-semibold leading-none">{totalEnrolled.length}</p>
                             <p className="capitalize text-green-700 text-xl font-bold">Total enrollment</p>
                         </div>
                     </div>

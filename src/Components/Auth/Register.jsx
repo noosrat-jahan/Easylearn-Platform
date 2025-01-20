@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import pic from '../../assets/login.png'
 import { AuthContext } from '../../Provider/AuthProvider';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
@@ -15,6 +15,8 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     const navigate = useNavigate()
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const {
         register,
@@ -49,7 +51,7 @@ const Register = () => {
                                 showConfirmButton: false,
                                 timer: 3500
                             });
-                            navigate('/')
+                            navigate(from, { replace: true })
                         }
                     })
 
@@ -84,7 +86,7 @@ const Register = () => {
                                 showConfirmButton: false,
                                 timer: 3500
                             });
-                            navigate('/')
+                            navigate(from, { replace: true })
                         }
                     })
 
