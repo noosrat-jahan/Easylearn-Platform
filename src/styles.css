@@ -33,12 +33,12 @@
     align-items: center;
   }
   
-  .swiper-slide img {
+   /* .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+  }  */
   
   .bg-one{
     background-image: linear-gradient(to right , #fffefe, #d3caca47), url('./assets/bannerimg2.jpeg');

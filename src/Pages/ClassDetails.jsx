@@ -38,7 +38,7 @@ const ClassDetails = () => {
                     <h2 className='text-blue-700 font-semibold'>Instructor Name: {classDetails.name}</h2>
                     <h2 className='text-blue-600 font-semibold'>Instructor Email: {classDetails.email}</h2>
                     <div className="card-actions justify-end">
-                        <Link to={`/payment/${classDetails._id}`} className="btn btn-accent">Enroll</Link >
+                        <Link to={`/payment/${classDetails._id}`} className="btn bg-purple-700 text-xl text-white">PAY NOW</Link >
                     </div>
                 </div>
             </div>

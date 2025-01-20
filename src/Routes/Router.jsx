@@ -22,6 +22,8 @@ import TeacherClassDetails from '../Pages/TeacherClassDetails';
 import TeacherRequests from '../Pages/TeacherRequests';
 import AllUsers from '../Pages/AllUsers';
 import AdminAllClasses from '../Pages/AdminAllClasses';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 
 const Router = createBrowserRouter([
     {
@@ -38,7 +40,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/all-classes/:id",
-                element: <ClassDetails></ClassDetails>
+                element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
             },
             {
                 path: "/payment/:id",
@@ -46,13 +48,13 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/teachon",
-                element: <TeachOnPage></TeachOnPage>
+                element: <PrivateRoute><TeachOnPage></TeachOnPage></PrivateRoute>
             },
         ]
     },
     {
         path: "/studentdashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: "/studentdashboard/myprofile",
@@ -80,15 +82,15 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/studentdashboard/teacherRequest",
-                element: <TeacherRequests></TeacherRequests>
+                element: <AdminRoute><TeacherRequests></TeacherRequests></AdminRoute>
             },
             {
                 path: "/studentdashboard/allusers",
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: "/studentdashboard/allClasses",
-                element: <AdminAllClasses></AdminAllClasses>
+                element: <AdminRoute><AdminAllClasses></AdminAllClasses></AdminRoute>
             },
         ]
     },

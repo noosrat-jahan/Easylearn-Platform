@@ -41,6 +41,7 @@ const TeacherClassDetails = () => {
                 console.log(res.data);
                 if (res.data.insertedId) {
                     createassignment.onClose()
+                    refetch()
                     Swal.fire("Assignment is created successfully");
                 }
             })
@@ -51,6 +52,7 @@ const TeacherClassDetails = () => {
         queryKey: ['newAssignment', id],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/createdAssignments/${id}`)
+            
             return res.data
         }
     })

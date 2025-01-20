@@ -1,27 +1,47 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 
 const CheckoutForm = () => {
 
     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+
+
+    const { id } = useParams()
+    console.log(id);
+
+    const { data: classDetails = {} } = useQuery({
+        queryKey: ['classDetails'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/AllnewlyCreatedClass/${id}`)
+            console.log(res.data);
+            return res.data
+        }
+    })
+    console.log(classDetails);
+
 
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('');
 
-    const price = 125
+    // const price = 100
 
     useEffect(() => {
-        axios.post('http://localhost:5000/create-confirm-intent', { price: price })
-            .then(res => {
-                console.log(res.data.clientSecret);
-                setClientSecret(res.data.clientSecret)
-            })
-    }, [axios, price])
+        if (classDetails) {
+            axios.post('http://localhost:5000/create-confirm-intent', { price: parseInt(classDetails.price) })
+                .then(res => {
+                    console.log(res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret)
+                })
+        }
+    }, [axios, parseInt(classDetails.price)])
 
     const [errorMessage, setErrorMessage] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState(null);
@@ -56,7 +76,7 @@ const CheckoutForm = () => {
             console.log('[PaymentMethod]', paymentMethod);
             setPaymentMethod(paymentMethod)
             setErrorMessage('')
-            
+
         }
 
         // confirm payment
@@ -64,26 +84,31 @@ const CheckoutForm = () => {
             payment_method: {
                 card: card,
                 billing_details: {
-                    email:  'anonymous@gmail.com',
-                    name:  'anonymous'
+                    email: user?.email,
+                    name: user?.displayName
                 }
 
             }
         })
 
-        if(confirmError){
+        if (confirmError) {
             console.log('confirm error:', confirmError);
         }
-        else{
+        else {
             console.log('payment intent', paymentIntent);
-            if(paymentIntent.status === 'succeeded'){
-                console.log('transactionId',paymentIntent.id);
+            if (paymentIntent.status === 'succeeded') {
+                console.log('transactionId', paymentIntent.id);
                 setTransactionId(paymentIntent.id)
 
                 // now save the payment in the database
                 const payment = {
-                    email: 'anonymous@gmail.com',
-                    price: price,
+                    studentEmail: user?.email,
+                    teacherName: classDetails.name,
+                    classID: classDetails._id,
+                    classTitle: classDetails.title,
+                    classPrice: classDetails.price,
+                    classThumbnail: classDetails.image,
+                    classDetails: classDetails.details,
                     transactionId: paymentIntent.id,
                     date: new Date(), // utc date convert. use moment js to 
                     // cartIds: cart.map(item => item._id),
@@ -93,7 +118,7 @@ const CheckoutForm = () => {
 
                 const res = await axios.post('http://localhost:5000/payments', payment)
                 console.log('saved payment info', res.data.insertedId);
-                if(res.data.insertedId){
+                if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -101,7 +126,7 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 2500
                     });
-                    navigate('/studentdashboard/myclasses')
+                    navigate('/studentdashboard/studentclasses')
                 }
             }
         }
@@ -111,7 +136,7 @@ const CheckoutForm = () => {
         <div>
             <form onSubmit={handleSubmit}>
 
-                <h1 className='uppercase text-xl font-bold text-teal-600 mb-3'>Payment Amount:  ${price}</h1>
+                <h1 className='uppercase text-xl font-bold text-teal-600 mb-3'>Payment Amount:  ${classDetails.price}</h1>
                 <p className='text-red-500 mb-2'>{errorMessage}</p>
                 <CardElement
                     options={{
@@ -138,7 +163,7 @@ const CheckoutForm = () => {
                 {
                     transactionId && <p className='text-green-600'>Your Transaction ID NO: {transactionId}</p>
                 }
-                
+
             </form>
         </div>
     );

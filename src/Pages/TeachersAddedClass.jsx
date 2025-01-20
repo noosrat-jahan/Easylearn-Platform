@@ -2,13 +2,14 @@
 import { Modal, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, FormControl, FormLabel, Textarea, ModalFooter, Button, ModalBody, Input, ButtonGroup, Card, CardBody, CardFooter, ChakraProvider, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const TeachersAddedClass = () => {
     const { user } = useContext(AuthContext)
+    const [editClass, setEditClass] = useState()
     // console.log(user.email);
 
     const { refetch, data: newCreatedClass = [] } = useQuery({
@@ -58,7 +59,7 @@ const TeachersAddedClass = () => {
                         showConfirmButton: false,
                         timer: 4000
                     });
-                    
+
                 }
             })
     }
@@ -124,48 +125,16 @@ const TeachersAddedClass = () => {
 
                             <CardFooter className='mx-auto w-full '>
                                 <ButtonGroup spacing='2' w={'full'}>
-                                    <Button onClick={updateClass.onOpen} variant='solid' colorScheme='blue' className='w-1/2'>
+                                    <Button
+                                        onClick={() => {
+                                            setEditClass(newClass)
+                                            updateClass.onOpen()
+                                        }}
+                                        variant='solid' colorScheme='blue' className='w-1/2'>
                                         Update
                                     </Button>
 
-                                    <Modal
-                                        initialFocusRef={initialRef}
-                                        finalFocusRef={finalRef}
-                                        isOpen={updateClass.isOpen}
-                                        onClose={updateClass.onClose}
-                                        isCentered
-                                    >
-                                        <ModalOverlay />
-                                        <ModalContent>
-                                            <ModalHeader mt={'4'} fontSize={24} fontWeight={'bold'} textAlign={'center'}>Update Class Information</ModalHeader>
-                                            <ModalCloseButton />
-                                            <ModalBody pb={3} >
-                                                <form onSubmit={(e) => { handleupdateClass(e, newClass._id) }} className='space-y-3'>
-                                                    <FormControl>
-                                                        <FormLabel>Class Title</FormLabel>
-                                                        <Input type="text" ref={titleRef}
-                                                            placeholder='title'
-                                                            defaultValue={newClass.title} />
-                                                    </FormControl>
-                                                    <FormControl>
-                                                        <FormLabel>Class Image</FormLabel>
-                                                        <Input type="text" ref={imageRef} placeholder='class image' />
-                                                    </FormControl>
-                                                    <FormControl>
-                                                        <FormLabel>Class Price</FormLabel>
-                                                        <Input type="text" ref={priceRef} placeholder=' price' />
-                                                    </FormControl>
-                                                    <FormControl >
-                                                        <FormLabel> Class Description</FormLabel>
-                                                        <Textarea ref={descriptionRef} placeholder='Description'></Textarea>
-                                                    </FormControl>
-                                                    <Button type="submit" mt={6} colorScheme='orange' width={'full'}>
-                                                        Update
-                                                    </Button>
-                                                </form>
-                                            </ModalBody>
-                                        </ModalContent>
-                                    </Modal>
+
 
                                     <Button onClick={() => { handleDelete(newClass._id) }} variant='solid' colorScheme='red' className='w-1/2'>
                                         Delete
@@ -186,6 +155,55 @@ const TeachersAddedClass = () => {
                     </ChakraProvider>)
                 }
             </div>
+
+            <ChakraProvider>
+                <Modal
+                    initialFocusRef={initialRef}
+                    finalFocusRef={finalRef}
+                    isOpen={updateClass.isOpen}
+                    onClose={updateClass.onClose}
+                    isCentered
+                >
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader mt={'4'} fontSize={24} fontWeight={'bold'} textAlign={'center'}>Update Class Information</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody pb={3} >
+                            <form onSubmit={(e) => { handleupdateClass(e, editClass._id) }} className='space-y-3'>
+                                <FormControl>
+                                    <FormLabel>Class Title</FormLabel>
+                                    <Input type="text" ref={titleRef}
+                                        placeholder='title'
+                                        defaultValue={editClass?.title} />
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel>Class Image</FormLabel>
+                                    <Input type="text" ref={imageRef}
+                                     placeholder='class image'
+                                     defaultValue={editClass?.image} />
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel>Class Price</FormLabel>
+                                    <Input type="text" ref={priceRef} 
+                                    placeholder=' price'
+                                    defaultValue={editClass?.price} />
+                                </FormControl>
+                                <FormControl >
+                                    <FormLabel> Class Description</FormLabel>
+                                    <Textarea ref={descriptionRef} 
+                                    placeholder='Description'
+                                    defaultValue={editClass?.details}
+                                    ></Textarea>
+                                </FormControl>
+                                <Button type="submit" mt={6} colorScheme='orange' width={'full'}>
+                                    Update
+                                </Button>
+                            </form>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </ChakraProvider>
+
 
 
         </div>

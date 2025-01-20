@@ -22,10 +22,37 @@ import Swal from 'sweetalert2';
 import { FaPlug, FaPlus } from 'react-icons/fa';
 import ReactStars from 'react-stars';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 const MyEnrollClassDetails = () => {
 
     const { user } = useContext(AuthContext)
+
+    const { id } = useParams()
+    console.log(id);
+
+    // to display assignment of specific enrolled class
+    const { refetch, data: newCreatedAssignment = [] } = useQuery({
+        queryKey: ['newAssignment', id],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/createdAssignments/${id}`)
+            return res.data
+        }
+    })
+
+
+    // specific class details 
+    const { data: classDetails = {} } = useQuery({
+        queryKey: ['classDetails'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/AllnewlyCreatedClass/${id}`)
+            console.log(res.data);
+            return res.data
+        }
+    })
+    console.log(classDetails);
+
 
     const [rating, setRating] = useState(0);
     const ratingChanged = (newRating) => {
@@ -42,6 +69,9 @@ const MyEnrollClassDetails = () => {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
+
+    // const [submitDisabled, setSubmitDisabled] = useState(false)
+
     const handleSubmitAssignment = (e) => {
         e.preventDefault()
         const task = initialRef.current.value
@@ -51,17 +81,16 @@ const MyEnrollClassDetails = () => {
                 console.log(res.data);
                 if (res.data.insertedId) {
                     submitModal.onClose()
+                    setSubmitDisabled(true)
                     Swal.fire("Assignment Submission Done!");
                 }
             })
     }
 
-
-
     const handleSubmitFeedback = (e) => {
         e.preventDefault()
         const feedbackInfo = {
-            title: 'ICT',
+            title: classDetails.title,
             name: user?.displayName,
             photo: user?.photoURL,
             description: finalRef.current.value,
@@ -109,26 +138,29 @@ const MyEnrollClassDetails = () => {
                             </tr>
                         </thead>
                         <tbody >
-                            <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
-                                <td className="p-3">
-                                    <p>97412378923</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>Microsoft Corporation</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p className="dark:text-gray-600">Friday</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p className="dark:text-gray-600">Tuesday</p>
-                                </td>
-                                <td className="p-3 text-center">
-                                    <Button className="px-5 py-2.5 font-semibold rounded-md bg-pink-600 text-gray-50"
-                                        onClick={submitModal.onOpen} >Submit</Button>
-                                </td>
-                            </tr>
+                            {
+                                newCreatedAssignment.map(newassignment => <tr key={newassignment._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                    <td className="p-3">
+                                        <p>{newassignment.title}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{newassignment.description}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{newassignment.marks}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{newassignment.deadline}</p>
+                                    </td>
+                                    <td className="p-3 text-center">
+                                        <Button
+                                        // disabled={submitDisabled}
+                                         className="px-5 py-2.5 font-semibold btn rounded-md bg-pink-600 text-gray-50"
+                                            onClick={submitModal.onOpen} >Submit</Button>
+                                    </td>
+                                </tr>)
+                            }
+                            
                         </tbody>
                     </table>
                 </div>
@@ -187,7 +219,7 @@ const MyEnrollClassDetails = () => {
                                             value={rating}
                                             onChange={ratingChanged}
                                             size={24}
-                                            color2={"#ffd700"}                                    
+                                            color2={"#ffd700"}
 
                                         />
                                         <h2>Value: {rating}</h2>
@@ -206,3 +238,5 @@ const MyEnrollClassDetails = () => {
 };
 
 export default MyEnrollClassDetails;
+
+

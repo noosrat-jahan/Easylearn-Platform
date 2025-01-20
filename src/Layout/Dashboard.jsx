@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FaBook, FaUser } from 'react-icons/fa';
 import { SiGoogleclassroom } from "react-icons/si";
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigation } from 'react-router-dom';
 import logo from '../assets/Easy learn.png'
 import useAdmin from '../Hooks/useAdmin';
 import { AuthContext } from '../Provider/AuthProvider';
@@ -11,6 +11,8 @@ import useTeacher from '../Hooks/useTeacher';
 
 
 const Dashboard = () => {
+
+    const navigation = useNavigation()
 
     const [isAdmin] = useAdmin()
     const [isTeacher] = useTeacher()
@@ -43,7 +45,7 @@ const Dashboard = () => {
                                     <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myProfile"><FaUser></FaUser> My Profile</NavLink></li>
                                     <div className="divider"></div>
                                 </ul>
-                                :
+                                    :
                                     <ul className="menu text-lg space-y-5 pt-10">
                                         <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/myprofile"><FaUser></FaUser> My Profile </NavLink></li>
                                         <li className='w-3/4 mx-auto border border-black rounded-lg shadow'><NavLink to="/studentdashboard/studentclasses"><FaBook></FaBook> My Enroll Class</NavLink></li>
@@ -57,7 +59,15 @@ const Dashboard = () => {
             </div>
 
             <div className='flex-1'>
-                <Outlet></Outlet>
+                <div className='min-h-[calc(100vh-200px)]'>
+                    {
+                        navigation.state === "loading" ?
+                            <div className='flex justify-center'>
+                                <span className=" loading loading-spinner text-pink-700 mt-10 w-10 mx-auto"></span>
+                            </div>
+                            : <Outlet></Outlet>
+                    }
+                </div>
             </div>
         </div>
     );

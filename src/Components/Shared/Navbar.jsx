@@ -17,7 +17,10 @@ const Navbar = () => {
     const links = <>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/all-classes">All Classes</NavLink>
-        <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
+        {
+            user && <NavLink to="/teachon">Teach On EASYLEARN</NavLink>
+        }
+        
     </>
 
     const handleLogout = () => {

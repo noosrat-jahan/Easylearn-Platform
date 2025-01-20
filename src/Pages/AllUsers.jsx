@@ -52,7 +52,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h1>All Users</h1>
+            <h1 className='mt-5 text-3xl text-rose-400 font-semibold'>All Users</h1>
 
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
 
