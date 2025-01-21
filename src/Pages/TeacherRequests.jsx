@@ -89,7 +89,7 @@ const TeacherRequests = () => {
         <div>
             <h1 className='my-4 text-3xl text-green-800'>Review Teacher Requests</h1>
 
-            <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+            <div className="container  p-2 mx-auto sm:p-4 dark:text-gray-800">
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">

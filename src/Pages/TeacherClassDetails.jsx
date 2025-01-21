@@ -76,7 +76,7 @@ const TeacherClassDetails = () => {
     })
 
     return (
-        <div>
+        <div className=''>
             <section className="p-6 w-10/12 lg:w-full mx-auto mt-2 text-gray-100 bg-gray-600">
                 <div className="container grid grid-cols-1 gap-6 mx-auto  lg:grid-cols-3">
                     <div className="flex p-4 items-center justify-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">

@@ -39,7 +39,7 @@ const Dashboard = () => {
     const btnRef = React.useRef()
 
     return (
-        <div className='flex'>
+        <div className='flex md:flex-row flex-col'>
             <div className='bg-[#31bebcbd] min-h-screen md:w-4/12 lg:w-3/12 hidden md:block'>
                 <Link to="/"><img src={logo} alt="" className="w-1/3 lg:w-28 mt-3 mx-auto" /></Link>
 
@@ -77,7 +77,7 @@ const Dashboard = () => {
             </div> 
 
             <div className='flex-1'>
-                <div className='md:hidden text-3xl text-green-700 text-right mr-5 mb-3'>
+                <div className='md:hidden text-3xl text-green-700 text-right mr-10 mb-3'>
                     <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
                         <RiMenuFold2Fill />
                     </Button>

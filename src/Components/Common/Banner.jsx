@@ -29,12 +29,12 @@ const Banner = () => {
                 mousewheel={true}
                 keyboard={true}
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                className="mySwiper"
+                className="mySwiper one"
             >
 
                 <SwiperSlide>
 
-                    <div className="text-green-800 flex justify-center items-center  w-full h-full bg-one">
+                    <div className="text-green-800 flex lg:ml-20 ml-7 items-center  w-full h-full bg-one">
                         <div className='w-3/4 text-left space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Learning Made Easy</h1>
                             <p className="lg:text-xl text-sm md:w-1/2">
@@ -49,21 +49,22 @@ const Banner = () => {
 
                 <SwiperSlide>
                    
-                    <div className="text-amber-800 flex justify-center items-center   w-full h-full bg-two">
+                    <div className="text-amber-800 flex lg:ml-20 ml-7 items-center   w-full h-full bg-two">
                         <div className='w-3/4 text-left space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Create. Teach. Inspire.</h1>
                             <p className="lg:text-xl text-sm md:w-1/2">
                             Become a part of our platform to educate the next generation. Share your knowledge with ease and grow your impact.
                             </p>
-                            <button className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded shadow">
+                            <button className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 lg:py-4 px-4 lg:px-8 rounded shadow">
                             Join Us as a Teacher
                             </button>
                         </div>
                     </div>
                 </SwiperSlide>
+                
                 <SwiperSlide>
                     
-                    <div className="text-purple-800 flex justify-center items-center   w-full h-full bg-three">
+                    <div className="text-purple-800 flex lg:ml-20 ml-7 items-center   w-full h-full bg-three">
                         <div className='w-3/4 text-left space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Your Success, Our Priority</h1>
                             <p className="lg:text-xl text-sm md:w-1/2 ">

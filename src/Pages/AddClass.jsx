@@ -14,6 +14,7 @@ const AddClass = () => {
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
         data.status = 'pending'
+        data.TotalEnrollment = 0
         console.log(data)
 
         axios.post('https://edu-manage-website-server.vercel.app/newlyCreatedClass', data)

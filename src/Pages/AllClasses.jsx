@@ -28,7 +28,7 @@ const AllClasses = () => {
                                 <p class="text-sm text-gray-700 mt-2">
                                     {classes.details}
                                 </p>
-                                <p className='text-pink-800 text-lg font-semibold font-openSans pb-5'>Total Enrolment: </p>
+                                <p className='text-pink-800 text-lg font-semibold font-openSans pb-5'>Total Enrolment: {classes.TotalEnrollment} </p>
                                 <Link to={`/all-classes/${classes._id}`} class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                                     Enroll Now
                                 </Link>
