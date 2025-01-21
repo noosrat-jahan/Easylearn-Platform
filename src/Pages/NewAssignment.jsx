@@ -16,7 +16,9 @@ import {
     Textarea,
     Center,
 } from '@chakra-ui/react'
+import axios from 'axios';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 const NewAssignment = ({ newassignment }) => {
 
@@ -31,14 +33,19 @@ const NewAssignment = ({ newassignment }) => {
 
     const handleSubmitAssignment = (e) => {
         e.preventDefault()
-        const task = initialRef.current.value
 
-        axios.post('http://localhost:5000/assignment', { task })
+        const submissionInfo = {
+             task:  initialRef.current.value,
+             classId:  newassignment.classId
+        }
+        
+
+        axios.post('https://edu-manage-website-server.vercel.app/assignment', submissionInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
                     submitModal.onClose()
-                    setSubmitDisabled(true)
+                    // setSubmitDisabled(true)
                     Swal.fire("Assignment Submission Done!");
                 }
             })

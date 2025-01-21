@@ -12,7 +12,7 @@ const AllUsers = () => {
     const { refetch, data: users = [] } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/allusers')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/allusers')
             return res.data
         }
     })
@@ -29,7 +29,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes, Make Admin!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/allusers/admin/${users._id}`)
+                axios.patch(`https://edu-manage-website-server.vercel.app/allusers/admin/${users._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {

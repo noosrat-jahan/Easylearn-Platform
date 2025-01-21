@@ -15,7 +15,7 @@ const StudentEnrollclass = () => {
     const { refetch, data: myEnrollClass = [] } = useQuery({
         queryKey: [user?.email, 'myEnrollClass'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/payments?email=${user.email}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/payments?email=${user.email}`)
             console.log(res.data);
             return res.data
         }

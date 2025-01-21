@@ -16,7 +16,7 @@ const AddClass = () => {
         data.status = 'pending'
         console.log(data)
 
-        axios.post('http://localhost:5000/newlyCreatedClass', data)
+        axios.post('https://edu-manage-website-server.vercel.app/newlyCreatedClass', data)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -35,10 +35,10 @@ const AddClass = () => {
     return (
         <div>
             <h1 className='text-3xl font-bold my-5 text-pink-600 font-lato'>Add New Class</h1>
-            <div className='w-3/4 mx-auto bg-gray-50 p-7 my-10'>
+            <div className='w-4/5 mx-auto bg-gray-50 p-5 my-10'>
                 <h3 className='text-left mb-3 text-blue-600'>Please fill out the form with necessary information....</h3>
                 <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
-                    <div className='flex gap-3'>
+                    <div className='flex flex-col lg:flex-row gap-3'>
                         {/* name field  */}
                         <label className="form-control w-full ">
                             <div className="label">
@@ -69,7 +69,7 @@ const AddClass = () => {
                     </div>
 
                     {/* title and price  */}
-                    <div className='flex gap-3'>
+                    <div className='flex flex-col lg:flex-row gap-3'>
 
                         {/* title  */}
 
@@ -97,7 +97,6 @@ const AddClass = () => {
                                 className="input input-bordered w-full " />
                         </label>
                     </div>
-
 
 
                     {/* image  */}

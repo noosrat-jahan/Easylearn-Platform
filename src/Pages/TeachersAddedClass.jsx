@@ -15,7 +15,7 @@ const TeachersAddedClass = () => {
     const { refetch, data: newCreatedClass = [] } = useQuery({
         queryKey: [user?.email, 'newClass'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/newlyCreatedClass?email=${user.email}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/newlyCreatedClass?email=${user.email}`)
             console.log(res.data);
             return res.data
 
@@ -46,7 +46,7 @@ const TeachersAddedClass = () => {
             description: descriptionRef.current.value,
         }
         console.log(updatedClassInfo);
-        axios.put(`http://localhost:5000/newlyCreatedClass/${id}`, updatedClassInfo)
+        axios.put(`https://edu-manage-website-server.vercel.app/newlyCreatedClass/${id}`, updatedClassInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
@@ -76,7 +76,7 @@ const TeachersAddedClass = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/newlyCreatedClass/${id}`)
+                axios.delete(`https://edu-manage-website-server.vercel.app/newlyCreatedClass/${id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.deletedCount > 0) {

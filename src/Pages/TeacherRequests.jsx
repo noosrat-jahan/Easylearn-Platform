@@ -11,7 +11,7 @@ const TeacherRequests = () => {
     const { refetch, data: teachReq = [] } = useQuery({
         queryKey: ['teachReq'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/teacherRequests')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/teacherRequests')
             return res.data
         }
     })
@@ -30,12 +30,12 @@ const TeacherRequests = () => {
             confirmButtonText: "Yes, Make Teacher!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/allusers/${request.userEmail}`)
+                axios.patch(`https://edu-manage-website-server.vercel.app/allusers/${request.userEmail}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {
 
-                            axios.patch(`http://localhost:5000/teacherRequests/${request.email}`)
+                            axios.patch(`https://edu-manage-website-server.vercel.app/teacherRequests/${request.email}`)
                                 .then(res => {
                                     console.log(res.data);
                                     if (res.data.modifiedCount > 0) {
@@ -67,7 +67,7 @@ const TeacherRequests = () => {
             confirmButtonText: "Yes, Reject Teacher Request!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/teacherRequests/rej/${request.email}`)
+                axios.patch(`https://edu-manage-website-server.vercel.app/teacherRequests/rej/${request.email}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {

@@ -56,7 +56,7 @@ const AuthProvider = ({children}) => {
             if(currentUser){
                 // get token and store client
                 const userInfo = {email: currentUser?.email}
-                axios.post('http://localhost:5000/jwt', userInfo)
+                axios.post('https://edu-manage-website-server.vercel.app/jwt', userInfo)
                 .then(res =>{
                     if(res.data.token){
                         console.log('token',res.data.token);

@@ -10,7 +10,7 @@ const useTeacher = () => {
     const {data: isTeacher, isPending: isTeacherLoading} = useQuery({
         queryKey: [user?.email, 'isTeacher'],
         queryFn: async()=>{
-            const res = await axios.get(`http://localhost:5000/allusers/${user?.email}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/allusers/${user?.email}`)
             console.log(res.data);
             return res.data.isTeacher
         }

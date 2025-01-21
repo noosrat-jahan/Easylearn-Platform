@@ -37,7 +37,7 @@ const MyEnrollClassDetails = () => {
     const { refetch, data: newCreatedAssignment = [] } = useQuery({
         queryKey: ['newAssignment', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/createdAssignments/${id}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/createdAssignments/${id}`)
             return res.data
         }
     })
@@ -47,7 +47,7 @@ const MyEnrollClassDetails = () => {
     const { data: classDetails = {} } = useQuery({
         queryKey: ['classDetails'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/AllnewlyCreatedClass/${id}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass/${id}`)
             console.log(res.data);
             return res.data
         }
@@ -73,21 +73,21 @@ const MyEnrollClassDetails = () => {
 
     // const [submitDisabled, setSubmitDisabled] = useState(false)
 
-    const [submitAssignment, setSubmitAssignment] = useState()
-    const handleSubmitAssignment = (e) => {
-        e.preventDefault()
-        const task = initialRef.current.value
+    // const [submitAssignment, setSubmitAssignment] = useState()
+    // const handleSubmitAssignment = (e) => {
+    //     e.preventDefault()
+    //     const task = initialRef.current.value
 
-        axios.post('http://localhost:5000/assignment', { task })
-            .then(res => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    submitModal.onClose()
-                    setSubmitDisabled(true)
-                    Swal.fire("Assignment Submission Done!");
-                }
-            })
-    }
+    //     axios.post('https://edu-manage-website-server.vercel.app/assignment', { task })
+    //         .then(res => {
+    //             console.log(res.data);
+    //             if (res.data.insertedId) {
+    //                 submitModal.onClose()
+    //                 setSubmitDisabled(true)
+    //                 Swal.fire("Assignment Submission Done!");
+    //             }
+    //         })
+    // }
 
     const handleSubmitFeedback = (e) => {
         e.preventDefault()
@@ -99,7 +99,7 @@ const MyEnrollClassDetails = () => {
             ratingStar: rating
         }
 
-        axios.post('http://localhost:5000/feedback', feedbackInfo)
+        axios.post('https://edu-manage-website-server.vercel.app/feedback', feedbackInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -152,7 +152,7 @@ const MyEnrollClassDetails = () => {
             </div>
 
             <ChakraProvider>
-                <Modal
+                {/* <Modal
                     initialFocusRef={initialRef}
                     finalFocusRef={finalRef}
                     isOpen={submitModal.isOpen}
@@ -176,7 +176,7 @@ const MyEnrollClassDetails = () => {
 
                         </ModalBody>
                     </ModalContent>
-                </Modal>
+                </Modal> */}
 
 
                 <Modal

@@ -10,7 +10,7 @@ const AdminAllClasses = () => {
     const { refetch, data: newCreatedClass = [] } = useQuery({
         queryKey: ['teachReq'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/AllnewlyCreatedClass')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass')
             return res.data
         }
     })
@@ -28,7 +28,7 @@ const AdminAllClasses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/${newclass._id}`)
+                axios.patch(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass/${newclass._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {
@@ -60,7 +60,7 @@ const AdminAllClasses = () => {
             confirmButtonText: "Yes, Reject Class Request!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/AllnewlyCreatedClass/rej/${newclass._id}`)
+                axios.patch(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass/rej/${newclass._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {

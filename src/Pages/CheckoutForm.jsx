@@ -18,7 +18,7 @@ const CheckoutForm = () => {
     const { data: classDetails = {} } = useQuery({
         queryKey: ['classDetails'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/AllnewlyCreatedClass/${id}`)
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass/${id}`)
             console.log(res.data);
             return res.data
         }
@@ -35,7 +35,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         if (classDetails) {
-            axios.post('http://localhost:5000/create-confirm-intent', { price: parseInt(classDetails.price) })
+            axios.post('https://edu-manage-website-server.vercel.app/create-confirm-intent', { price: parseInt(classDetails.price) })
                 .then(res => {
                     console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret)
@@ -116,7 +116,7 @@ const CheckoutForm = () => {
                     status: 'pending'
                 }
 
-                const res = await axios.post('http://localhost:5000/payments', payment)
+                const res = await axios.post('https://edu-manage-website-server.vercel.app/payments', payment)
                 console.log('saved payment info', res.data.insertedId);
                 if (res.data.insertedId) {
                     Swal.fire({

@@ -18,7 +18,7 @@ const Feedback = () => {
     const { refetch, data: allFeedback = [] } = useQuery({
         queryKey: ['feedback'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/feedback')            
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/feedback')
             return res.data
         }
     })
@@ -43,24 +43,26 @@ const Feedback = () => {
                 {
                     allFeedback.map(feedback => <SwiperSlide key={feedback._id}>
 
-                        <div className="w-full h-full mx-auto bg-pink-200 rounded-lg shadow-lg p-8 flex flex-col items-center justify-center text-center">
-                            <img
-                                src={feedback.photo}
-                                alt={feedback.name}
-                                className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-gray-300"
-                            />
-                            <h3 className="lg:text-4xl font-semibold text-gray-800 mb-2">{feedback.name}</h3>
-                            <p className="text-2xl text-pink-700 font-bold italic">{feedback.title}</p>
-                            <p className="text-gray-700 mt-4 leading-relaxed">{feedback.description}</p>
+                        <div className="w-full h-full mx-auto bg-pink-200 rounded-lg shadow-lg  flex flex-col items-center justify-center text-center">
+                            <div className='h-5/6 '>
+                                <img
+                                    src={feedback.photo}
+                                    alt={feedback.name}
+                                    className="lg:w-28 w-14 h-14 lg:h-28 mx-auto rounded-full object-cover mb-4 border-2 border-gray-300"
+                                />
+                                <h3 className="lg:text-4xl font-semibold text-gray-800 mb-2">{feedback.name}</h3>
+                                <p className="lg:text-2xl text-pink-700 font-bold italic">{feedback.title}</p>
+                                <p className="text-gray-700 mt-4 text-sm md:text-lg leading-relaxed">{feedback.description}</p>
 
-                            <div className='flex flex-col items-center'>
-                                <ReactStars
-                                    count={5}
-                                    value={4}
-                                    onChange={ratingChanged}
-                                    size={24}
-                                    color2={"#FF9D23"}
-                                />                                
+                                <div className='flex flex-col items-center'>
+                                    <ReactStars
+                                        count={5}
+                                        value={4}
+                                        onChange={ratingChanged}
+                                        size={24}
+                                        color2={"#FF9D23"}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </SwiperSlide>)

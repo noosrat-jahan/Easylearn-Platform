@@ -8,11 +8,21 @@ EASYLEARN is an education management website to manage interactions between lear
 
 * Easylearn website users have three different roles: general user, admin and teacher.
 
-* Admin dashboard has 4 routes (teacher request, users, class request). Admin can view all teacher request, all users of the website, all class requests from different teachers, can approve and rejects requests, can make user an admin or teacher or both.
+* Admin dashboard has 4 routes (teacher request, users, class request). 
 
-* A teacher can add new class, view his/ her added classes. If class approved by admin then he/she can create assignments and view them.
+* Admin can view all teacher request, all users of the website, all class requests from different teachers.
 
-* Student can view classes, enroll for paid classes using payment method, can view assignment, submit assignment and also can give feedback about specific classes.
+* Admin can approve and rejects requests, can make user an admin or teacher or both.
+
+* A teacher can add new class, view his/ her added classes.
+
+* A teacher can update and delete his or her added class
+
+* If class approved by admin then he/she can create assignments and view them.
+
+* Student can view classes, enroll for paid classes using payment method.
+
+* Students can view assignment, submit assignment and also can give feedback about specific classes.
 
 * Any user can update his/ her profile information and can apply to be a teacher by filling out a teacher details form
 
@@ -35,6 +45,11 @@ EASYLEARN is an education management website to manage interactions between lear
 * swiperjs
 * react-icon
 
+
+# Admin Credentials
+
+Email: noosrat@gmail.com
+Password: NoosRat31$#
 
 # Links: 
 

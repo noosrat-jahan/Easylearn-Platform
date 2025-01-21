@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const InspireTeach = () => {
     return (
@@ -79,9 +80,9 @@ const InspireTeach = () => {
                             </div>
 
                             <div className="mt-8">
-                                <button className="bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-pink-700">
+                                <Link to="/teachon" className="bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-pink-700">
                                     Join as a Teacher
-                                </button>
+                                </Link>
                             </div>
                         </div>
 

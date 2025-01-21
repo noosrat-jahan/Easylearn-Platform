@@ -20,7 +20,7 @@ const TeachOnPage = () => {
         data.userEmail = user.email
         console.log(data)
 
-        axios.post('http://localhost:5000/teacherRequests', data)
+        axios.post('https://edu-manage-website-server.vercel.app/teacherRequests', data)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {

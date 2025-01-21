@@ -10,7 +10,7 @@ const TotalUser = () => {
     const { refetch, data: users = [] } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/allusers')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/allusers')
             return res.data
         }
     })
@@ -18,7 +18,7 @@ const TotalUser = () => {
     const {  data: newCreatedClass = [] } = useQuery({
         queryKey: ['teachReq'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/allDisplayedClass')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/allDisplayedClass')
             return res.data
         }
     })
@@ -26,7 +26,7 @@ const TotalUser = () => {
     const {  data: totalEnrolled = [] } = useQuery({
         queryKey: ['teachReq'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/totalEnrolled')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/totalEnrolled')
             return res.data
         }
     })
@@ -34,9 +34,9 @@ const TotalUser = () => {
         <div>
 
             <section className="p-10 my-10 text-gray-100 bg-gradient-to-r from-blue-300 via-purple-200 to-purple-300  bg-[#8EC5FC] grid grid-cols-1 lg:grid-cols-3 gap-10">
-                <div className="container grid grid-cols-1 gap-6 mx-auto col-span-1">
+                <div className="container grid lg:grid-cols-1 gap-6 mx-auto col-span-1">
                     
-                    <div className="flex items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+                    <div className="flex justify-center items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center p-1 items-center rounded-lg sm:p-4 bg-teal-600 text-white text-3xl">
                             <FaUsers />
                         </div>
@@ -45,7 +45,7 @@ const TotalUser = () => {
                             <p className="capitalize text-blue-700 text-xl font-bold">Total Usres</p>
                         </div>
                     </div>
-                    <div className="flex items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+                    <div className="flex justify-center items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center p-1 items-center rounded-lg sm:p-4 bg-teal-600 text-white text-3xl">
                             <SiGoogleclassroom />
                         </div>
@@ -55,7 +55,7 @@ const TotalUser = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+                    <div className="flex justify-center items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center p-1 items-center rounded-lg sm:p-4 bg-teal-600 text-white text-3xl">
                             <PiStudentFill />
                         </div>

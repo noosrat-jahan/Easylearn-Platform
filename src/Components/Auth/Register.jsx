@@ -40,7 +40,7 @@ const Register = () => {
                     role: 'student'
                 }
 
-                axios.post('http://localhost:5000/allusers', userInfo)
+                axios.post('https://edu-manage-website-server.vercel.app/allusers', userInfo)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.insertedId) {
@@ -75,7 +75,7 @@ const Register = () => {
                     photo: user.photoURL,
                     role: 'student'
                 }
-                axios.post('http://localhost:5000/allusers', userInfo)
+                axios.post('https://edu-manage-website-server.vercel.app/allusers', userInfo)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.insertedId) {

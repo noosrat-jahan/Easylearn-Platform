@@ -11,9 +11,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 const TeacherClassDetails = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     console.log(id);
-   
+
     const createassignment = useDisclosure()
 
     const initialRef = React.useRef(null)
@@ -24,7 +24,7 @@ const TeacherClassDetails = () => {
     const deadlineRef = React.useRef(null)
     const descriptionRef = React.useRef(null)
 
-    
+
     const handleCreateAssignment = (e) => {
         e.preventDefault()
 
@@ -36,7 +36,7 @@ const TeacherClassDetails = () => {
             deadline: deadlineRef.current.value,
         }
         console.log(NewAssignmentInfo);
-        axios.post('http://localhost:5000/createdAssignments', NewAssignmentInfo)
+        axios.post('https://edu-manage-website-server.vercel.app/createdAssignments', NewAssignmentInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -47,30 +47,48 @@ const TeacherClassDetails = () => {
             })
     }
 
-   
+
     const { refetch, data: newCreatedAssignment = [] } = useQuery({
         queryKey: ['newAssignment', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/createdAssignments/${id}`)
-            
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/createdAssignments/${id}`)
+
+            return res.data
+        }
+    })
+
+    const { data: enrolledByClass = [] } = useQuery({
+        queryKey: ['enrolledByClass', id],
+        queryFn: async () => {
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/enrolledByClass/${id}`)
+
+            return res.data
+        }
+    })
+
+    const { data: totalSubmittedassignment = [] } = useQuery({
+        queryKey: ['totalSubmittedassignment', id],
+        queryFn: async () => {
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/assignment/${id}`)
+
             return res.data
         }
     })
 
     return (
         <div>
-            <section className="p-6  text-gray-100 bg-gray-600">
-                <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-3">
-                    <div className="flex p-4 items-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+            <section className="p-6 w-10/12 lg:w-full mx-auto mt-2 text-gray-100 bg-gray-600">
+                <div className="container grid grid-cols-1 gap-6 mx-auto  lg:grid-cols-3">
+                    <div className="flex p-4 items-center justify-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center  p-1 items-center rounded-lg sm:p-4 bg-violet-600 text-white text-3xl">
                             <PiStudentFill />
                         </div>
                         <div className="flex flex-col gap-3  justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">0</p>
+                            <p className="text-3xl font-semibold leading-none">{enrolledByClass.length}</p>
                             <p className="capitalize">Total enrollment</p>
                         </div>
                     </div>
-                    <div className="flex p-4 items-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+                    <div className="flex p-4 items-center justify-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center p-1 items-center rounded-lg sm:p-4 bg-violet-600 text-white text-3xl">
                             <MdAssignment />
                         </div>
@@ -79,12 +97,12 @@ const TeacherClassDetails = () => {
                             <p className="capitalize">Total assignment</p>
                         </div>
                     </div>
-                    <div className="flex p-4 items-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
+                    <div className="flex p-4 items-center justify-center space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">
                         <div className="flex justify-center p-1 items-center rounded-lg sm:p-4 bg-violet-600 text-white text-3xl">
                             <SiGoogletasks />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">0</p>
+                            <p className="text-3xl font-semibold leading-none">{totalSubmittedassignment.length}</p>
                             <p className="capitalize font-semibold">Total  Assignment submission</p>
                         </div>
                     </div>
@@ -129,22 +147,23 @@ const TeacherClassDetails = () => {
                                             <p>{newassignment.description}</p>
                                         </td>
                                         <td className="p-3">
-                                            <p>{newassignment.marks}</p>                                            
+                                            <p>{newassignment.marks}</p>
                                         </td>
                                         <td className="p-3">
-                                            <p>{newassignment.deadline}</p>                                            
-                                        </td>                                        
+                                            <p>{newassignment.deadline}</p>
+                                        </td>
                                         <td className="p-3 text-center">
                                             <Button className="px-5 py-2.5 font-semibold rounded-md bg-purple-600 text-gray-50"
                                             >Check</Button>
                                         </td>
                                     </tr>)
                                 }
-                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
+
 
 
                 <ChakraProvider>
@@ -154,6 +173,7 @@ const TeacherClassDetails = () => {
                         isOpen={createassignment.isOpen}
                         onClose={createassignment.onClose}
                         isCentered
+
                     >
                         <ModalOverlay />
                         <ModalContent>
@@ -185,6 +205,7 @@ const TeacherClassDetails = () => {
                         </ModalContent>
                     </Modal>
                 </ChakraProvider>
+
             </div>
         </div>
     );
