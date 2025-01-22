@@ -1,20 +1,52 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, ChakraProvider, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AdminAllClasses = () => {
 
-    const { refetch, data: newCreatedClass = [] } = useQuery({
-        queryKey: ['teachReq'],
+
+    // for pagination purpose
+    const { data: AllnewlyCreatedClassCount = {count : 1} } = useQuery({
+        queryKey: ['AllnewlyCreatedClassCount'],
         queryFn: async () => {
-            const res = await axios.get('https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/AllnewlyCreatedClassCount')
+            return res.data
+        }
+    })
+
+    const { count } = AllnewlyCreatedClassCount
+    const [currentPage, setCurrentPage] = useState(0)
+    const [classPerPage, setClassPerPage] = useState(10)
+    const numberofPages = Math.ceil(count / classPerPage)
+
+    const pages = [...Array(numberofPages).keys()]
+    console.log(pages);
+
+    const { refetch, data: newCreatedClass = [] } = useQuery({
+        queryKey: [currentPage, classPerPage, 'newCreatedClass'],
+        queryFn: async () => {
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass?page=${currentPage}&size=${classPerPage}`)
             return res.data
         }
     })
     // console.log(newCreatedClass);
+
+
+    const handleprevpage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const handlenextpage = () => {
+        if (currentPage < numberofPages - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
 
     const handleApproveClass = newclass => {
         Swal.fire({
@@ -148,6 +180,19 @@ return (
                 </table>
             </div>
         </div>
+
+         {/* pagination control buttons  */}
+         <div className='my-5'>
+                
+                <button className='btn btn-accent btn-square mr-2 text-white' onClick={handleprevpage}>Prev</button>
+                {
+                    pages.map(page => <button
+                        onClick={() => { setCurrentPage(page) }}
+                        className='btn btn-accent btn-square mr-2 text-white' key={page}>{page}</button>)
+                }
+                <button className='btn btn-accent btn-square mr-2 text-white' onClick={handlenextpage}>Next</button>
+
+            </div>
     </div>
 );
 };

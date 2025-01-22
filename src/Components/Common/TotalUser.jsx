@@ -8,7 +8,7 @@ import { SiGoogleclassroom } from 'react-icons/si';
 const TotalUser = () => {
 
     const { refetch, data: users = [] } = useQuery({
-        queryKey: ['user'],
+        queryKey: ['users'],
         queryFn: async () => {
             const res = await axios.get('https://edu-manage-website-server.vercel.app/allusers')
             return res.data
@@ -16,7 +16,7 @@ const TotalUser = () => {
     })
 
     const {  data: newCreatedClass = [] } = useQuery({
-        queryKey: ['teachReq'],
+        queryKey: ['newCreatedClass'],
         queryFn: async () => {
             const res = await axios.get('https://edu-manage-website-server.vercel.app/allDisplayedClass')
             return res.data
@@ -24,7 +24,7 @@ const TotalUser = () => {
     })
 
     const {  data: totalEnrolled = [] } = useQuery({
-        queryKey: ['teachReq'],
+        queryKey: ['totalEnrolled'],
         queryFn: async () => {
             const res = await axios.get('https://edu-manage-website-server.vercel.app/totalEnrolled')
             return res.data

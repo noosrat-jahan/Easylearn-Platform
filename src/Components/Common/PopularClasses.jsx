@@ -19,7 +19,7 @@ import axios from 'axios';
 const PopularClasses = () => {
 
     const { refetch, data: newCreatedClass = [] } = useQuery({
-        queryKey: ['teachReq'],
+        queryKey: ['newCreatedClass'],
         queryFn: async () => {
             const res = await axios.get('https://edu-manage-website-server.vercel.app/popularClasses')
             return res.data

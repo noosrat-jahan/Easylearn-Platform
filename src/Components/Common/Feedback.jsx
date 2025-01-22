@@ -38,7 +38,7 @@ const Feedback = () => {
                 mousewheel={true}
                 modules={[Navigation, Pagination, Mousewheel]}
                 navigation={true}
-                className="mySwiper"
+                className="mySwiper three"
             >
                 {
                     allFeedback.map(feedback => <SwiperSlide key={feedback._id}>

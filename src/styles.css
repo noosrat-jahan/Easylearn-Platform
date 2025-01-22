@@ -27,6 +27,10 @@
     padding-right: 10px;
     border-radius: 10px;
   }
+
+  .three{
+    height: 65vh;
+  }
   
   .swiper-slide {
     text-align: center;

@@ -34,6 +34,7 @@ EASYLEARN is an education management website to manage interactions between lear
 * Stripe js
 * Express
 * MongoDB
+* Node.js
 * Firebase
 
 # Used Packages

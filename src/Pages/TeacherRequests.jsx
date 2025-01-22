@@ -1,21 +1,53 @@
 import { Button } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const TeacherRequests = () => {
     const { user } = useContext(AuthContext)
 
-    const { refetch, data: teachReq = [] } = useQuery({
-        queryKey: ['teachReq'],
+    // for pagination purpose
+    const { data: teacherRequests = {count : 1} } = useQuery({
+        queryKey: ['teacherRequests'],
         queryFn: async () => {
-            const res = await axios.get('https://edu-manage-website-server.vercel.app/teacherRequests')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/teacherRequestsCount')
+            return res.data
+        }
+    })
+
+    const { count } = teacherRequests
+   
+    const [currentPage, setCurrentPage] = useState(0)
+    const [teachReqPerPage, setteachReqPerPage] = useState(10)
+    const numberofPages = Math.ceil(count / teachReqPerPage)
+    console.log(numberofPages);
+    console.log(typeof currentPage);
+
+    const pages = [...Array(numberofPages).keys()]
+    console.log(pages);
+
+    const { refetch, data: teachReq = [] } = useQuery({
+        queryKey: [currentPage, teachReqPerPage, 'teachReq'],
+        queryFn: async () => {
+            const res = await axios.get(`https://edu-manage-website-server.vercel.app/teacherRequests?page=${currentPage}&size=${teachReqPerPage}`)
             return res.data
         }
     })
     console.log(teachReq);
+
+    const handleprevpage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const handlenextpage = () => {
+        if (currentPage < numberofPages - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
 
 
@@ -152,6 +184,19 @@ const TeacherRequests = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {/* pagination control buttons  */}
+            <div className='my-5'>
+                
+                <button className='btn btn-accent btn-square mr-2 text-white' onClick={handleprevpage}>Prev</button>
+                {
+                    pages.map(page => <button
+                        onClick={() => { setCurrentPage(page) }}
+                        className='btn btn-accent btn-square mr-2 text-white' key={page}>{page}</button>)
+                }
+                <button className='btn btn-accent btn-square mr-2 text-white' onClick={handlenextpage}>Next</button>
+
             </div>
         </div>
     );

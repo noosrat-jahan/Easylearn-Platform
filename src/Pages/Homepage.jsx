@@ -5,6 +5,8 @@ import PopularClasses from '../Components/Common/PopularClasses';
 import Feedback from '../Components/Common/Feedback';
 import TotalUser from '../Components/Common/TotalUser';
 import InspireTeach from '../Components/Common/InspireTeach';
+import UseOurApp from '../Components/Common/UseOurApp';
+import Faq from '../Components/Common/Faq';
 
 const Homepage = () => {
     return (
@@ -16,6 +18,8 @@ const Homepage = () => {
                 <Feedback></Feedback>
                 <TotalUser></TotalUser>
                 <InspireTeach></InspireTeach>
+                <UseOurApp></UseOurApp>
+                <Faq></Faq>
             </div>
         </div>
     );
