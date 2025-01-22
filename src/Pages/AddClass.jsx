@@ -5,17 +5,45 @@ import { AuthContext } from '../Provider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 
 const AddClass = () => {
 
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
+
+    // const addClassMutation = useMutation(
+    //     async (data) => {
+    //       const response = await axios.post(
+    //         "https://edu-manage-website-server.vercel.app/newlyCreatedClass",
+    //         data
+    //       );
+    //       return response.data;
+    //     },
+    //     {
+    //         onSuccess: (data) => {
+    //           console.log("Class created successfully:", data);
+    //           alert("Class created successfully!");
+    //           reset(); // Reset the form after successful submission
+    //         },
+    //         onError: (error) => {
+    //           console.error("Error creating class:", error);
+    //           alert("Failed to create class. Please try again.");
+    //         },
+    //       }
+        
+    //   );
+
+
+
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
         data.status = 'pending'
         data.TotalEnrollment = 0
         console.log(data)
+
+        // addClassMutation.mutate(data)
 
         axios.post('https://edu-manage-website-server.vercel.app/newlyCreatedClass', data)
             .then(res => {
