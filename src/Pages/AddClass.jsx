@@ -36,7 +36,6 @@ const AddClass = () => {
     //   );
 
 
-
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
         data.status = 'pending'

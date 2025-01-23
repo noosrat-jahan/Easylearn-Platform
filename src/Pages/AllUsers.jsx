@@ -98,7 +98,7 @@ const AllUsers = () => {
 
                 <form onSubmit={handleSearchUser}>
                     <label className="input input-bordered flex items-center gap-2 my-3 w-1/3">
-                        <input type="text" className="grow" name='email' placeholder="Search" />
+                        <input type="text" className="grow" name='email' placeholder="Search By User Email" />
                         <button type="submit" className='bg-purple-200 p-2'><FaSearch /></button>
                     </label>
                 </form>

@@ -15,10 +15,11 @@ const TotalUser = () => {
         }
     })
 
-    const {  data: newCreatedClass = [] } = useQuery({
-        queryKey: ['newCreatedClass'],
+    const {  data: totalClass = [] } = useQuery({
+        queryKey: ['totalClass'],
         queryFn: async () => {
-            const res = await axios.get('https://edu-manage-website-server.vercel.app/allDisplayedClass')
+            const res = await axios.get('https://edu-manage-website-server.vercel.app/totalClass')
+            console.log(totalClass);
             return res.data
         }
     })
@@ -50,7 +51,7 @@ const TotalUser = () => {
                             <SiGoogleclassroom />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">{newCreatedClass.length}</p>
+                            <p className="text-3xl font-semibold leading-none">{totalClass.length}</p>
                             <p className="capitalize  text-amber-700 text-xl font-bold">Total  Classes</p>
                         </div>
                     </div>
