@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -18,29 +18,41 @@ const TeachOnPage = () => {
     const [reqbtn, setReqbtn] = useState(false)
 
 
+
+    const mutation = useMutation({
+        mutationFn: async (formData) => {
+            console.log(formData);
+            await axios.post('https://edu-manage-website-server.vercel.app/teacherRequests', formData)
+                
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Your Request has been Submitted for Evaluation",
+                            showConfirmButton: false,
+                            timer: 3500
+                        });
+                        setFormVisibility(false)
+                        setMessage("Your Response have been recored. Your Application is Under Admin Review")
+                        
+                    }
+                })
+        }
+    })
+
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
         data.status = 'pending'
         data.userEmail = user.email
         console.log(data)
 
-        axios.post('https://edu-manage-website-server.vercel.app/teacherRequests', data)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Your Request has been Submitted for Evaluation",
-                        showConfirmButton: false,
-                        timer: 3500
-                    });
-                    setFormVisibility(false)
-                    setMessage("Your Response have been recored. Your Application is Under Admin Review")
-                    // navigate('/')
-                }
-            })
+        mutation.mutate(data)
+       
     }
+
+
 
 
     const { refetch, data: teacherReq = [] } = useQuery({
@@ -62,7 +74,6 @@ const TeachOnPage = () => {
                 setMessage("Sorry!! Unfortunately Your Teacher Request Has Been Rejected")
                 setReqbtn(true)
             }
-
 
             return res.data
 

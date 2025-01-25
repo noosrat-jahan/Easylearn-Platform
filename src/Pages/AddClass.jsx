@@ -12,39 +12,12 @@ const AddClass = () => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
-
-    // const addClassMutation = useMutation(
-    //     async (data) => {
-    //       const response = await axios.post(
-    //         "https://edu-manage-website-server.vercel.app/newlyCreatedClass",
-    //         data
-    //       );
-    //       return response.data;
-    //     },
-    //     {
-    //         onSuccess: (data) => {
-    //           console.log("Class created successfully:", data);
-    //           alert("Class created successfully!");
-    //           reset(); // Reset the form after successful submission
-    //         },
-    //         onError: (error) => {
-    //           console.error("Error creating class:", error);
-    //           alert("Failed to create class. Please try again.");
-    //         },
-    //       }
-        
-    //   );
-
-
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        data.status = 'pending'
-        data.TotalEnrollment = 0
-        console.log(data)
-
-        // addClassMutation.mutate(data)
-
-        axios.post('https://edu-manage-website-server.vercel.app/newlyCreatedClass', data)
+  
+    const mutation = useMutation({
+        mutationFn: async (formData) => {
+            console.log(formData);
+            await axios.post('https://edu-manage-website-server.vercel.app/newlyCreatedClass', formData)
+                
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -58,6 +31,18 @@ const AddClass = () => {
                     navigate('/studentdashboard/teacherclasses')
                 }
             })
+        }
+    })
+
+
+    const { register, handleSubmit } = useForm()
+    const onSubmit = (data) => {
+        data.status = 'pending'
+        data.TotalEnrollment = 0
+        console.log(data)
+
+        mutation.mutate(data)
+       
     }
 
     return (
