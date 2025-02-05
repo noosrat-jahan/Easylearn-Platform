@@ -1,6 +1,6 @@
 # Project Name: EASYLEARN
 
-![Alt text](https://i.ibb.co.com/bj9xc29z/Screenshot-2025-02-05-110607.png)
+![Alt text](src/assets/projectdemo.png)
 
 
 # Project Overview
