@@ -1,5 +1,8 @@
 # Project Name: EASYLEARN
 
+![Alt text](https://i.ibb.co.com/bj9xc29z/Screenshot-2025-02-05-110607.png)
+
+
 # Project Overview
 EASYLEARN is an education management website to manage interactions between learners and instructors by providing relevant and necessary resources, an interactive user interface and smooth functionality.
 
