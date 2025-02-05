@@ -93,6 +93,24 @@ EASYLEARN is an education management website to manage interactions between lear
 * vite: ^6.0.1
 
 
+# Guideline to Run Project in Local Machine:
+
+## Installation
+
+Run npm install to install project dependencies.
+
+## Environment setup
+Create a .env file and put your environment variable there. Save the following variable:
+VITE_apiKey,
+VITE_authDomain,
+VITE_projectId,
+VITE_storageBucket,
+VITE_messagingSenderId,
+VITE_appId
+
+## Usage
+Run `npm run dev` to run the project locally.
+
 # Admin Credentials
 
 Email: noosrat@gmail.com
