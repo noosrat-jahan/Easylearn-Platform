@@ -24,6 +24,8 @@ import AllUsers from '../Pages/AllUsers';
 import AdminAllClasses from '../Pages/AdminAllClasses';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
+import Contact from '../Pages/Contact';
+import About from '../Pages/About';
 
 const Router = createBrowserRouter([
     {
@@ -49,6 +51,14 @@ const Router = createBrowserRouter([
             {
                 path: "/teachon",
                 element: <PrivateRoute><TeachOnPage></TeachOnPage></PrivateRoute>
+            },
+            {
+                path: "/about",
+                element: <About></About>
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>
             },
         ]
     },
