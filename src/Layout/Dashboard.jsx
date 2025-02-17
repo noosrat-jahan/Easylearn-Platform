@@ -23,6 +23,7 @@ import {
     Input,
     ChakraProvider,
 } from '@chakra-ui/react'
+
 import Footer from '../Components/Shared/Footer';
 
 

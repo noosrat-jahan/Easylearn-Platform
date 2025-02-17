@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import '../../styles.css';
 
 // import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import banner1 from '../../assets/bannerimg1.jpeg'
 import banner2 from '../../assets/bannerimg2.jpeg'
@@ -25,10 +25,15 @@ const Banner = () => {
             <Swiper
                 cssMode={true}
                 // navigation={true}
+                autoplay={{
+                    delay: 5000, // Delay between transitions (in milliseconds)
+                    disableOnInteraction: false, // Autoplay will not stop after user interaction
+                }}
+                loop={true} // Enable looping
                 pagination={true}
                 mousewheel={true}
                 keyboard={true}
-                modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
                 className="mySwiper one"
             >
 

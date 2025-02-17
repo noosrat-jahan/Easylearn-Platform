@@ -30,7 +30,7 @@ const PopularClasses = () => {
 
     return (
         <div className='my-10'>
-            <h1 className='text-3xl font-bold text-pink-700 mb-5'>popular classes</h1>
+            <h1 className='text-3xl font-bold text-pink-700 mb-5'>Popular Classes</h1>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
@@ -38,7 +38,7 @@ const PopularClasses = () => {
                     clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper two"
+                className="mySwiper two "
                 style={{
                     
                     backgroundColor: "#8EC5FC",
@@ -48,7 +48,7 @@ const PopularClasses = () => {
 
                 {
                     newCreatedClass.map(newClass => <SwiperSlide  >
-                        <div  class="w-full h-[95%] bg-gray-100 p-3 rounded-lg shadow-lg space-y-2 ">
+                        <div  class="w-full h-[95%] bg-gray-100 p-3  rounded-lg shadow-lg space-y-2 ">
                             <img src={newClass.image} alt="Class Image" class="w-full h-40 object-cover rounded-md mb-4" />
                             <p class="text-sm font-semibold text-left text-purple-600">{newClass.name}</p>
                             <h3 class="text-lg font-bold">{newClass.title}</h3>

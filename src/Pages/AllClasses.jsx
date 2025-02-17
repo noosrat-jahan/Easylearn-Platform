@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 const AllClasses = () => {   
 
@@ -44,6 +45,11 @@ const AllClasses = () => {
         }
     }
 
+    const cardVariants = {
+        hidden: { opacity: 0, y: 50 }, // Start hidden, move up
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+      };
+
     return (
         <div>
             <section id="all-classes" class="bg-white py-5">
@@ -51,7 +57,12 @@ const AllClasses = () => {
                     <h2 class="text-2xl font-semibold mb-5">All Classes</h2>
                     <div class="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {
-                            newCreatedClass?.map(classes => <div key={classes._id} class="class-card bg-gray-100 p-4 rounded-lg shadow-lg space-y-2">
+                            newCreatedClass?.map(classes =>  <motion.div
+                                variants={cardVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }} // Trigger when 20% is visible
+                              ><div key={classes._id} class="class-card bg-gray-100 p-4 rounded-lg shadow-lg space-y-2 h-full">
                                 <img src={classes.image} alt="Class Image" class="w-full h-32 object-cover rounded-md mb-4" />
                                 <p class="text-sm font-semibold text-left text-purple-600">{classes.name}</p>
                                 <h3 class="text-lg font-bold">{classes.title}</h3>
@@ -64,6 +75,7 @@ const AllClasses = () => {
                                     Enroll Now
                                 </Link>
                             </div>
+                            </motion.div>
                             )
                         }
 

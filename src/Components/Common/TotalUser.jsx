@@ -4,6 +4,7 @@ import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { PiStudentFill } from 'react-icons/pi';
 import { SiGoogleclassroom } from 'react-icons/si';
+import CountUp from 'react-countup';
 
 const TotalUser = () => {
 
@@ -42,7 +43,8 @@ const TotalUser = () => {
                             <FaUsers />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">{users.length}</p>
+                       
+                            <p className="text-3xl font-semibold leading-none"> <CountUp end={users.length} duration={2}  /></p>
                             <p className="capitalize text-blue-700 text-xl font-bold">Total Usres</p>
                         </div>
                     </div>
@@ -51,7 +53,7 @@ const TotalUser = () => {
                             <SiGoogleclassroom />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">{totalClass.length}</p>
+                            <p className="text-3xl font-semibold leading-none"><CountUp end={totalClass.length} duration={2}  /> </p>
                             <p className="capitalize  text-amber-700 text-xl font-bold">Total  Classes</p>
                         </div>
                     </div>
@@ -61,7 +63,7 @@ const TotalUser = () => {
                             <PiStudentFill />
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">{totalEnrolled.length}</p>
+                            <p className="text-3xl font-semibold leading-none"><CountUp end={totalEnrolled.length} duration={2}  /></p>
                             <p className="capitalize text-green-700 text-xl font-bold">Total enrollment</p>
                         </div>
                     </div>

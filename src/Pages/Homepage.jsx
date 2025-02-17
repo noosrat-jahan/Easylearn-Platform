@@ -12,7 +12,7 @@ const Homepage = () => {
     return (
         <div>
             <Banner></Banner>
-            <div className='w-10/12 mx-auto '>
+            <div className='w-11/12 mx-auto '>
                 <Partners></Partners>
                 <PopularClasses></PopularClasses>
                 <Feedback></Feedback>

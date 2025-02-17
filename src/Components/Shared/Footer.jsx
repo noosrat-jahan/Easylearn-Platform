@@ -11,11 +11,11 @@ const Footer = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 items-center">
 
                             
-                            <div className='flex flex-col items-center space-y-5'>
+                            <div className='flex flex-col items-center justify-center space-y-5'>
                                 {/* Logo & Description */}
                                 <div className='space-y-3'>
-                                    <img src={logo} alt="" className='w-3/4' />
-                                    <p className=" text-sm text-left">
+                                    <img src={logo} alt="" className=' w-1/2 mx-auto' />
+                                    <p className=" text-sm text-center">
                                         EasyLearn is your trusted educational platform, designed to empower students and educators with innovative tools and seamless learning experiences for academic success.
                                     </p>
                                 </div>
