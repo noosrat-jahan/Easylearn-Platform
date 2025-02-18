@@ -13,6 +13,11 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
         openSans: ['Open Sans', 'sans-serif'],
       },
+      colors: {
+        bgprimary: "var(--background-primary)",
+        fgprimary: "var(--foreground-primary)",
+        title: "var(--homeTitle)",
+      },
     },
   },
   plugins: [require('daisyui'),],

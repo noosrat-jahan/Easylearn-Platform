@@ -39,8 +39,8 @@ const Banner = () => {
 
                 <SwiperSlide>
 
-                    <div className="text-green-800 flex lg:ml-20 ml-7 items-center  w-full h-full bg-one">
-                        <div className='w-3/4 text-left space-y-4'>
+                    <div className="text-green-800 flex  items-center  w-full h-full bg-one">
+                        <div className='w-3/4 text-left lg:ml-20 ml-7 space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Learning Made Easy</h1>
                             <p className="lg:text-xl text-sm md:w-1/2">
                                 Discover engaging classes and take the next step in your education journey with interactive tools and resources.
@@ -54,8 +54,8 @@ const Banner = () => {
 
                 <SwiperSlide>
                    
-                    <div className="text-amber-800 flex lg:ml-20 ml-7 items-center   w-full h-full bg-two">
-                        <div className='w-3/4 text-left space-y-4'>
+                    <div className="text-amber-800 flex items-center   w-full h-full bg-two">
+                        <div className='w-3/4 text-left  lg:ml-20 ml-7 space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Create. Teach. Inspire.</h1>
                             <p className="lg:text-xl text-sm md:w-1/2">
                             Become a part of our platform to educate the next generation. Share your knowledge with ease and grow your impact.
@@ -69,8 +69,8 @@ const Banner = () => {
                 
                 <SwiperSlide>
                     
-                    <div className="text-purple-800 flex lg:ml-20 ml-7 items-center   w-full h-full bg-three">
-                        <div className='w-3/4 text-left space-y-4'>
+                    <div className="text-purple-800 flex  items-center   w-full h-full bg-three">
+                        <div className='w-3/4 text-left lg:ml-20 ml-7 space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Your Success, Our Priority</h1>
                             <p className="lg:text-xl text-sm md:w-1/2 ">
                             Streamline your education management with tools built for you. Empower students and educators for a brighter future.

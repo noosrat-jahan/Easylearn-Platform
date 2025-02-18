@@ -8,6 +8,7 @@ import useTeacher from "../../Hooks/useTeacher";
 import { MdSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
 
+
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -100,11 +101,11 @@ const Navbar = () => {
               onChange={handleToggle}
               checked={theme === "light" ? false : true} />
               {/* light theme sun image */}
-              <span className=" swap-on">
+              <span className=" swap-on text-amber-300 text-lg">
                 <MdSunny />
               </span>
               {/* dark theme moon image */}
-              <span className=" swap-off">
+              <span className=" swap-off text-white text-lg">
                 <IoMdMoon />
               </span>
             </label>

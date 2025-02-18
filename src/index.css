@@ -8,13 +8,23 @@
 @tailwind utilities;
 
 
+/* Default (Light Mode) */
+:root {
+  --background-primary: white;
+  --foreground-primary: black;
+  --homeTitle: rgb(103, 7, 87);
+}
+
+/* Dark Mode */
+.dark {
+  --background-primary: #121212;
+  --foreground-primary: #ffffff;
+  --homeTitle: rgb(219, 32, 103);
+}
+
+/* Apply styles globally */
 body {
-    background-color: white;
-    color: black 
-  }
-  
-  /* Dark Mode Applied Globally */
-  .dark body {
-    background-color: black;
-    color: white 
-  }
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}  

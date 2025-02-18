@@ -11,8 +11,8 @@ import img8 from '../../assets/udemy.png'
 
 const Partners = () => {
     return (
-        <div className='mt-10 space-y-5'>
-            <h1 className='lg:text-4xl text-2xl mb-10 font-roboto font-semibold text-blue-800'>Recognized by Global Leaders in Technology and Busines</h1>
+        <div className='mt-10 space-y-5 '>
+            <h1 className='lg:text-4xl text-2xl mb-10 font-roboto font-semibold text-pink-600'>Recognized by Global Leaders in Technology and Busines</h1>
 
             <div className='w-10/12  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-10 justify-evenly'>
                 <div className='flex flex-col justify-center  items-center'>

@@ -44,7 +44,7 @@ const TotalUser = () => {
                         </div>
                         <div className="flex flex-col gap-3 justify-center align-middle">
                        
-                            <p className="text-3xl font-semibold leading-none"> <CountUp end={users.length} duration={2}  /></p>
+                            <p className="text-3xl font-semibold leading-none"> <CountUp end={users.length} duration={2} redraw={true}  /></p>
                             <p className="capitalize text-blue-700 text-xl font-bold">Total Usres</p>
                         </div>
                     </div>
