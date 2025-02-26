@@ -42,7 +42,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='flex md:flex-row flex-col'>
+            <div className='flex md:flex-row flex-col bg-white dark:bg-gray-800'>
                 <div className='bg-[#31bebcbd] min-h-screen md:w-4/12 lg:w-3/12 hidden md:block'>
                     <Link to="/"><img src={logo} alt="" className="w-1/3 lg:w-28 mt-3 mx-auto" /></Link>
 

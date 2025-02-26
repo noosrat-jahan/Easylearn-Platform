@@ -12,54 +12,54 @@ import img8 from '../../assets/udemy.png'
 const Partners = () => {
     return (
         <div className='mt-10 space-y-5 '>
-            <h1 className='lg:text-4xl text-2xl mb-10 font-roboto font-semibold text-pink-600'>Recognized by Global Leaders in Technology and Busines</h1>
+            <h1 className='lg:text-4xl text-2xl mb-10 font-roboto font-semibold text-pink-600 '>Recognized by Global Leaders in Technology and Business</h1>
 
-            <div className='w-10/12  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-10 justify-evenly'>
+            <div className='w-10/12   mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-10 justify-evenly'>
                 <div className='flex flex-col justify-center  items-center'>
                     <img src={img1} alt="" className='w-16  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white text-xs">
                         Inspiring innovation in learning for the automotive industry.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center'>
                     <img src={img2} alt="" className='w-20  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white  text-xs ">
                         Driving digital transformation in education.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center'>
                     <img src={img3} alt="" className='w-20  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Enhancing online learning with superior connectivity.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center'>
-                    <img src={img4} alt="" className='w-20  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <img src={img4} alt="" className='w-20  mb-2 dark:bg-white' />
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Ensuring global accessibility through communication tech.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center'>
                     <img src={img5} alt="" className='w-20  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Supporting community-focused educational outreach.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center'>
                     <img src={img6} alt="" className='w-20  mb-2' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Powering scalable, data-driven learning tools.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center '>
                     <img src={img7} alt="" className='w-20  mb-6' />
-                    <p class="text-gray-700 text-xs">
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Extending mobile learning to remote areas.
                     </p>
                 </div>
                 <div className='flex flex-col justify-center  items-center '>
-                    <img src={img8} alt="" className='w-20 ' />
-                    <p class="text-gray-700 text-xs">
+                    <img src={img8} alt="" className='w-20 bg-white' />
+                    <p className="text-gray-700 dark:text-white  text-xs">
                         Providing diverse courses to empower skill development globally.
                     </p>
                 </div>

@@ -2,12 +2,12 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="w-10/12 mx-auto my-10 text-center">
+    <div className="w-10/12 mx-auto my-10 text-center dark:bg-gray-900">
       <h1 className="text-4xl text-purple-800 font-semibold text-center uppercase mb-5">
         About <span className="text-pink-500">EasyLearn</span>
       </h1>
       <p className="font-roboto dark:text-gray-200 text-lg">
-        <span className="font-bold text-purple-700">EasyLearn</span> is a comprehensive education management platform designed to
+        <span className="font-bold text-purple-700 ">EasyLearn</span> is a comprehensive education management platform designed to
         simplify and enhance the learning experience. Whether for schools,
         coaching centers, or online educators, our platform offers powerful
         tools for course management, student tracking, and interactive learning.

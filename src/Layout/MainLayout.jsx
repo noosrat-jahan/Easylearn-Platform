@@ -7,7 +7,8 @@ const MainLayout = () => {
 
     const navigation = useNavigation()
     return (
-        <div>
+        <div className='dark:bg-gray-900'>
+            
             <Navbar></Navbar>
 
             <div className='min-h-[calc(100vh-200px)]'>

@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 const InspireTeach = () => {
     return (
         <div>
-            <section className="bg-gray-50 py-12 my-10 font-poppins">
+            <section className="bg-gray-50 dark:bg-gray-800 py-12 my-10 font-poppins">
                 <div className="container mx-auto px-6 md:px-12 lg:px-20">
                     <div className="grid md:grid-cols-2 gap-20 items-center">
                         {/* Left Content */}
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                            <h2 className="text-3xl font-bold text-gray-800 dark:text-amber-100 mb-4">
                                 Inspire, Teach, and Make a Difference
                             </h2>
-                            <p className="text-gray-600 mb-6">
+                            <p className="text-gray-600 dark:text-amber-100 mb-6">
                                 Join EasLearn as a teacher and empower students across the country.
                                 Share your knowledge, grow your career, and be part of the future of education.
                             </p>
@@ -24,10 +24,10 @@ const InspireTeach = () => {
                                         <i className="fas fa-chalkboard-teacher text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-semibold text-gray-800">
+                                        <h3 className="text-xl font-semibold text-gray-800 dark:text-amber-100">
                                             Flexible Teaching
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 dark:text-amber-100">
                                             Set your schedule and teach from anywhere. Our platform makes teaching seamless.
                                         </p>
                                     </div>
@@ -39,10 +39,10 @@ const InspireTeach = () => {
                                         <i className="fas fa-dollar-sign text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-semibold text-gray-800">
+                                        <h3 className="text-xl font-semibold text-gray-800 dark:text-amber-100">
                                             Earn More
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 dark:text-amber-100">
                                             Get paid for every class you teach. Build your career while making a meaningful impact.
                                         </p>
                                     </div>
@@ -54,10 +54,10 @@ const InspireTeach = () => {
                                         <i className="fas fa-users text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-semibold text-gray-800">
+                                        <h3 className="text-xl font-semibold text-gray-800 dark:text-amber-100">
                                             Build Your Profile
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 dark:text-amber-100">
                                             Showcase your expertise and gain recognition among students and peers.
                                         </p>
                                     </div>
@@ -69,10 +69,10 @@ const InspireTeach = () => {
                                         <i className="fas fa-globe text-xl"></i>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-semibold text-gray-800">
+                                        <h3 className="text-xl font-semibold text-gray-800 dark:text-amber-100">
                                             Reach Students Everywhere
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 dark:text-amber-100">
                                             Connect with students nationwide and make learning accessible to all.
                                         </p>
                                     </div>

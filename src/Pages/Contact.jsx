@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <div>
       <div className="dark:text-white font-inter bg-gradient-to-b from-white via-purple-50 to-blue-50  dark:from-black  dark:to-slate-900 h-auto pb-10 ">
-        <div className=" mt-10 grid grid-cols-1 md:grid-cols-2 items-center justify-around w-11/12 mx-auto gap-10">
+        <div className=" pt-10 grid grid-cols-1 md:grid-cols-2 items-center justify-around w-11/12 mx-auto gap-10">
           <div className="py-5  text-left space-y-6 ">
             <h1 className="text-5xl font-bold text-teal-500 ">Get in Touch</h1>
             {/* <div className='w-64 bg-amber-300 h-4 rounded-sm absolute top-1 '></div> */}
@@ -15,24 +15,24 @@ const Contact = () => {
               to assist you with all your learning needs!
             </p>
 
-            <div className="bg-white shadow-lg rounded-2xl p-5 max-w-md ">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            <div className="bg-white dark:bg-gray-800  shadow-lg rounded-2xl p-5 max-w-md ">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-amber-100 mb-4">
                 Contact Us
               </h2>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <span className="text-blue-500 text-xl">📍</span>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-amber-100">
                     123 EasyLearn Street, City, Country
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-green-500 text-xl">📞</span>
-                  <p className="text-gray-700">+123 456 7890</p>
+                  <p className="text-gray-700 dark:text-amber-100">+123 456 7890</p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-red-500 text-xl">✉️</span>
-                  <p className="text-gray-700">support@easylearn.com</p>
+                  <p className="text-gray-700 dark:text-amber-100">support@easylearn.com</p>
                 </div>
               </div>
             </div>

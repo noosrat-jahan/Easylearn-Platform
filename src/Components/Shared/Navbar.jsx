@@ -7,7 +7,9 @@ import useAdmin from "../../Hooks/useAdmin";
 import useTeacher from "../../Hooks/useTeacher";
 import { MdSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
-
+import { IoMoon } from "react-icons/io5";
+import { IoSunny } from "react-icons/io5";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -20,10 +22,9 @@ const Navbar = () => {
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/all-classes">All Classes</NavLink>
-      {user && <NavLink to="/teachon">Teach On EASYLEARN</NavLink>}     
+      {user && <NavLink to="/teachon">Teach On EASYLEARN</NavLink>}
       <NavLink to="/about">About</NavLink>
       <NavLink to="/contact">Contact</NavLink>
-      
     </>
   );
 
@@ -40,26 +41,31 @@ const Navbar = () => {
     });
   };
 
-
   // implemtation of dark theme
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  )
-  const handleToggle = e =>{
-    if(e.target.checked){
-        setTheme("dark")
-    }
-    else{
-        setTheme("light")
-    }
-  }
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  // )
+  // const handleToggle = e =>{
+  //   if(e.target.checked){
+  //       setTheme("dark")
+  //   }
+  //   else{
+  //       setTheme("light")
+  //   }
+  // }
 
-  useEffect(()=>{
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme")
-    // add custom data-theme attribute to html tag required to update theme using DaisyUI
-    document.querySelector("html").setAttribute("data-theme", localTheme)
-  }, [theme])
+  // useEffect(()=>{
+  //   localStorage.setItem("theme", theme);
+  //   const localTheme = localStorage.getItem("theme")
+  //   // add custom data-theme attribute to html tag required to update theme using DaisyUI
+  //   document.querySelector("html").setAttribute("data-theme", localTheme)
+  // }, [theme])
+
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevents hydration mismatch issue
+  useEffect(() => setMounted(true), []);
 
   return (
     <div className="navbar  bg-gradient-to-r from-sky-600 to-pink-500  z-10 font-poppins sticky top-0 justify-between px-10">
@@ -95,20 +101,11 @@ const Navbar = () => {
           {links}
 
           {/* Toggle button here */}
-          <button className="btn btn-square btn-ghost">
-            <label className="swap swap-rotate w-12 h-12">
-              <input type="checkbox" 
-              onChange={handleToggle}
-              checked={theme === "light" ? false : true} />
-              {/* light theme sun image */}
-              <span className=" swap-on text-amber-300 text-lg">
-                <MdSunny />
-              </span>
-              {/* dark theme moon image */}
-              <span className=" swap-off text-white text-lg">
-                <IoMdMoon />
-              </span>
-            </label>
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="btn btn-square btn-ghost"
+          >
+            {mounted && theme === "dark" ? <MdSunny /> : <IoMdMoon />}
           </button>
         </ul>
       </div>

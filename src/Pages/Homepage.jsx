@@ -10,7 +10,7 @@ import Faq from '../Components/Common/Faq';
 
 const Homepage = () => {
     return (
-        <div>
+        <div className=''>
             <Banner></Banner>
             <div className='w-11/12 mx-auto '>
                 <Partners></Partners>
