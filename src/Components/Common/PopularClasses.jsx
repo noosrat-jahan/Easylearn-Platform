@@ -54,10 +54,10 @@ const PopularClasses = () => {
                             <h3 class="text-lg font-bold">{newClass.title}</h3>
                             <p class="text-lg font-bold text-orange-600">৳ {newClass.price} per month</p>
                             <p class="text-sm text-gray-700 mt-2">
-                                {newClass.details.slice(0, 100)}
+                                {newClass.details.slice(0, 80)}
                             </p>
                             <p className='text-pink-800 text-lg font-semibold font-openSans pb-3'>Total Enrolment: {newClass.TotalEnrollment}</p>
-                            <Link to={`/all-classes/${newClass._id}`} class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                            <Link to={`/all-classes/${newClass._id}`} class="mt-4 text-base bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                                 Enroll Now
                             </Link>
                         </div>

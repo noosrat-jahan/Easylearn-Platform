@@ -35,7 +35,7 @@ const TotalUser = () => {
     return (
         <div>
 
-            <section className="p-10 my-10 text-gray-100 bg-gradient-to-r from-blue-300 via-purple-200 to-purple-300  bg-[#8EC5FC] dark:bg-gray-500 grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <section className="p-10 my-10 text-gray-100 bg-gradient-to-r from-blue-50 to-purple-100 dark:bg-gray-500 grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <div className="container grid lg:grid-cols-1 gap-6 mx-auto col-span-1">
                     
                     <div className="flex justify-center items-center p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-50 text-gray-800">

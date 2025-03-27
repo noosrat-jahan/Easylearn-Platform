@@ -18,6 +18,15 @@ export default {
         fgprimary: "var(--foreground-primary)",
         title: "var(--homeTitle)",
       },
+      animation: {
+        float: "float 2s infinite ease-in-out",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
     },
   },
   plugins: [require('daisyui'),],

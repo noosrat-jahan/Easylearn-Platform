@@ -92,7 +92,7 @@ const Contact = () => {
                   placeholder="message"
                 ></textarea>
                 <div className="form-control mt-6">
-                  <button className="btn bg-[#36378bbf] text-white font-bold text-lg">
+                  <button className="btn bg-teal-500 text-white font-bold text-lg">
                     Send Message
                   </button>
                 </div>

@@ -54,7 +54,7 @@ const Banner = () => {
 
                 <SwiperSlide>
                    
-                    <div className="text-amber-800 flex items-center   w-full h-full bg-two">
+                    <div className="text-amber-600 flex items-center   w-full h-full bg-two">
                         <div className='w-3/4 text-left  lg:ml-20 ml-7 space-y-4'>
                             <h1 className="lg:text-7xl md:text-4xl text-xl font-bold">Create. Teach. Inspire.</h1>
                             <p className="lg:text-xl text-sm md:w-1/2">

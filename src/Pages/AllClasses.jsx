@@ -54,7 +54,7 @@ const AllClasses = () => {
         <div>
             <section id="all-classes" className="bg-white dark:bg-[#1d232a] py-5">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-2xl dark:text-white font-semibold mb-5">All Classes</h2>
+                    <h2 className="text-3xl dark:text-white font-bold mb-5 text-pink-700">All Classes</h2>
                     <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {
                             newCreatedClass?.map(classes =>  <motion.div
@@ -62,12 +62,12 @@ const AllClasses = () => {
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true, amount: 0.2 }} // Trigger when 20% is visible
-                              ><div key={classes._id} className="class-card bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-lg space-y-2 h-full">
+                              ><div key={classes._id} className="class-card bg-gray-100 dark:bg-gray-700 p-5 rounded-lg shadow-lg space-y-2 h-full">
                                 <img src={classes.image} alt="Class Image" className="w-full h-32 object-cover rounded-md mb-4" />
                                 <p className="text-sm font-semibold text-left text-purple-600">{classes.name}</p>
                                 <h3 className="text-lg font-bold dark:text-amber-50">{classes.title}</h3>
                                 <p className="text-lg font-bold text-orange-600">৳ {classes.price} per month</p>
-                                <p className="text-sm text-gray-700 dark:text-amber-100 mt-2">
+                                <p className="text-sm text-gray-700 dark:text-amber-100 mt-2 h-max">
                                     {classes.details.slice(0, 100)}
                                 </p>
                                 <p className='text-pink-800 text-lg font-semibold font-openSans pb-5'>Total Enrolment: {classes.TotalEnrollment} </p>

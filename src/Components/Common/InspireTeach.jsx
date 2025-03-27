@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const InspireTeach = () => {
     return (
         <div>
-            <section className="bg-gray-50 dark:bg-gray-800 py-12 my-10 font-poppins">
+            <section className="bg-gradient-to-r from-blue-50 to-purple-100 dark:bg-gray-800 py-12 my-10 font-poppins">
                 <div className="container mx-auto px-6 md:px-12 lg:px-20">
                     <div className="grid md:grid-cols-2 gap-20 items-center">
                         {/* Left Content */}

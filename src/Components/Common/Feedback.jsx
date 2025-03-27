@@ -43,7 +43,7 @@ const Feedback = () => {
                 {
                     allFeedback.map(feedback => <SwiperSlide key={feedback._id}>
 
-                        <div className="w-full h-full mx-auto bg-pink-200 dark:bg-gray-700  rounded-lg shadow-lg  flex flex-col items-center justify-center text-center">
+                        <div className="w-full h-full mx-auto bg-gradient-to-r from-blue-50 to-purple-100 dark:bg-gray-700  rounded-lg shadow-lg  flex flex-col items-center justify-center text-center">
                             <div className='h-5/6 '>
                                 <img
                                     src={feedback.photo}
