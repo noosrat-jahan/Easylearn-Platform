@@ -20,7 +20,7 @@ const TotalUser = () => {
         queryKey: ['totalClass'],
         queryFn: async () => {
             const res = await axios.get('https://edu-manage-website-server.vercel.app/totalClass')
-            console.log(totalClass);
+            // console.log(totalClass);
             return res.data
         }
     })

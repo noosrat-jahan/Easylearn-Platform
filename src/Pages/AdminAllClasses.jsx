@@ -23,7 +23,7 @@ const AdminAllClasses = () => {
     const numberofPages = Math.ceil(count / classPerPage)
 
     const pages = [...Array(numberofPages).keys()]
-    console.log(pages);
+    // console.log(pages);
 
     const { refetch, data: newCreatedClass = [] } = useQuery({
         queryKey: [currentPage, classPerPage, 'newCreatedClass'],
@@ -62,7 +62,7 @@ const AdminAllClasses = () => {
 
                 axios.patch(`https://edu-manage-website-server.vercel.app/AllnewlyCreatedClass/${newclass._id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.modifiedCount > 0) {
                             refetch()
                             Swal.fire({

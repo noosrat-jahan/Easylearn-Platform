@@ -11,7 +11,7 @@ const TeachOnPage = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
-  console.log(user.email);
+  // console.log(user.email);
 
   const [formVisibility, setFormVisibility] = useState(true);
   const [message, setMessage] = useState("");

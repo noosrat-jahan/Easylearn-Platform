@@ -50,7 +50,6 @@ const TeacherRequests = () => {
     }
 
 
-
     const handleMakeTeacher = request => {
         Swal.fire({
             title: "Are you sure?",

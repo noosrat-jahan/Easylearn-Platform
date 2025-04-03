@@ -26,7 +26,7 @@ const Feedback = () => {
 
     const [rating, setRating] = useState(0);
     const ratingChanged = (newRating) => {
-        console.log(newRating);
+        // console.log(newRating);
         setRating(newRating);
     };
 
@@ -50,8 +50,8 @@ const Feedback = () => {
                                     alt={feedback.name}
                                     className="lg:w-28 w-14 h-14 lg:h-28 mx-auto rounded-full object-cover mb-4 border-2 border-gray-300"
                                 />
-                                <h3 className="lg:text-4xl font-semibold text-gray-800 dark:text-amber-100 mb-3">{feedback.name}</h3>
-                                <p className="lg:text-2xl text-pink-700 font-bold italic dark:text-teal-100">{feedback.title}</p>
+                                <h3 className="lg:text-4xl font-semibold text-gray-800 dark:text-amber-500 mb-3">{feedback.name}</h3>
+                                <p className="lg:text-2xl text-pink-700 font-bold italic dark:text-teal-500">{feedback.title}</p>
                                 <p className="text-gray-700 mt-4 text-sm md:text-lg leading-relaxed">{feedback.description}</p>
 
                                 <div className='flex flex-col items-center'>

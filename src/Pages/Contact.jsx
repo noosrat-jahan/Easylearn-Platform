@@ -1,6 +1,30 @@
+import axios from "axios";
 import React from "react";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const values = Object.fromEntries(formData.entries())
+    console.log(values)
+
+    axios.post("https://edu-manage-website-server.vercel.app/messages", values)
+    .then((res) =>{
+      console.log(res.data)
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Thank You For Reaching Us Out",
+        text: "Your message has been recorded.",
+        showConfirmButton: false,
+        timer: 2500
+      });
+    })
+  }
+
+
   return (
     <div>
       <div className="dark:text-white font-inter bg-gradient-to-b from-white via-purple-50 to-blue-50  dark:from-black  dark:to-slate-900 h-auto pb-10 ">
@@ -41,7 +65,7 @@ const Contact = () => {
           <div>
             <h1 className="text-4xl text-teal-600 font-bold"> Contact Form</h1>
             <div className="mt-5 card bg-base-100 dark:bg-slate-800 w-full p-1 shrink-0 shadow-xl">
-              <form className="card-body p-4 dark:text-black">
+              <form onSubmit={handleSubmit} className="card-body p-4 dark:text-black">
                 <div className="flex gap-3">
                   <div className="form-control w-1/2">
                     <label className="label">
@@ -49,6 +73,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="first_name"
                       placeholder="first name"
                       className="input input-bordered"
                       required
@@ -60,6 +85,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="last_name"
                       placeholder="last name"
                       className="input input-bordered"
                       required
@@ -73,6 +99,7 @@ const Contact = () => {
                   <input
                     type="email"
                     placeholder="email"
+                    name="email"
                     className="input input-bordered"
                     required
                   />
@@ -83,6 +110,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
+                    name="organization"
                     placeholder="organization"
                     className="input input-bordered"
                   />
@@ -90,9 +118,10 @@ const Contact = () => {
                 <textarea
                   className="textarea textarea-bordered mt-2"
                   placeholder="message"
+                  name="message"
                 ></textarea>
                 <div className="form-control mt-6">
-                  <button className="btn bg-teal-500 text-white font-bold text-lg">
+                  <button type="submit" className="btn bg-teal-500 text-white font-bold text-lg">
                     Send Message
                   </button>
                 </div>

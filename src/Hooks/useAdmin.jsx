@@ -12,7 +12,7 @@ const useAdmin = () => {
         queryKey: [user?.email, 'isAdmin'],
         queryFn: async()=>{
             const res = await axios.get(`https://edu-manage-website-server.vercel.app/allusers/admin/${user?.email}`)
-            console.log(res.data);
+            // console.log(res.data);
             return res.data.isAdmin
         }
     })
